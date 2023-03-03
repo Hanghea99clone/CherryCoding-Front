@@ -1,11 +1,8 @@
 import { css } from "styled-components";
 
 export const defaultthem = {
-  bgColor: "whitesmoke",
-  textColor: "#393E46",
-  accentColor: "#00a8ff",
-  borderColor: "#1B262C",
-  hoverColor: "#3D84A8",
+  btnRedColor: "#EC625B",
+  btnBulueColor: "#7291FF",
 };
 
 export const FlexRow = css`
@@ -13,7 +10,6 @@ export const FlexRow = css`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
 `;
 
 export const FlexRowBetween = css`
@@ -21,13 +17,16 @@ export const FlexRowBetween = css`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 `;
 
-export const FlexCol = css`
+export const FlexSpace = css`
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const FelexCenter = css`
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 `;
