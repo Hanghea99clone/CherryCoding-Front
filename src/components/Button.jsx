@@ -40,6 +40,30 @@ const BtnStyle = styled.button`
       width: 11.6875rem;
       height: 2.4375rem;
     `}
+
+    ${(props) =>
+    props.mainMdBtn &&
+    css`
+      width: 11.6875rem;
+      height: 60px;
+      background-color: #ff6464;
+    `}
+
+    ${(props) =>
+    props.loginMdBtn &&
+    css`
+      width: 100%;
+      height: 50px;
+      background-color: #ff6464;
+    `}
+
+    ${(props) =>
+    props.signupMdBtn &&
+    css`
+      width: 100%;
+      height: 50px;
+      background-color: #64a8c6;
+    `}
 `;
 
 export default Btn;

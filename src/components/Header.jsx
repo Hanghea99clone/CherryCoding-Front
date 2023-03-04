@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillBasket3Fill } from "react-icons/bs";
-import { FaUserAlt } from "react-icons/fa";
+//import { FaUserAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import codingcherrylogo from "../asset/codingcherrylogo.png";
+import { toggle } from "../redux/module/login";
 
 function Header() {
+  const [login, setLogin] = useState(true);
+  const dispatch = useDispatch();
+
+  const modalOpenClose = () => {
+    setLogin(login);
+    dispatch(toggle(login));
+  };
+
   return (
     <HeaderContainer>
       <HeaderBox>
@@ -17,9 +27,13 @@ function Header() {
         </HeaderAreaSpan>
         <HeaderBoxDiv>
           <div>
+            <HeaderLoginBtn onClick={modalOpenClose}>로그인</HeaderLoginBtn>
+          </div>
+
+          {/* <div>
             <HeaderFaUserAlt />
             <span>이름</span>
-          </div>
+          </div> */}
           <BsFillBasket3Fill />
         </HeaderBoxDiv>
       </HeaderBox>
@@ -28,12 +42,12 @@ function Header() {
 }
 
 const HeaderContainer = styled.div`
-  border: 1px solid red;
+  //border: 1px solid red;
   height: 100px;
 `;
 
 const HeaderBox = styled.div`
-  border: 1px solid black;
+  //border: 1px solid black;
   height: 100%;
   ${(props) => props.theme.FlexSpace};
 `;
@@ -56,8 +70,12 @@ const HeaderBoxDiv = styled.div`
   width: 115px;
 `;
 
-const HeaderFaUserAlt = styled(FaUserAlt)`
-  margin-right: 10px;
+// const HeaderFaUserAlt = styled(FaUserAlt)`
+//   margin-right: 10px;
+// `;
+
+const HeaderLoginBtn = styled.span`
+  cursor: pointer;
 `;
 
 export default Header;

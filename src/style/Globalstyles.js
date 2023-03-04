@@ -11,4 +11,9 @@ export const Globalstyle = createGlobalStyle`
 *{
     font-family: 'KimjungchulGothic-Bold';
 }
+
+body {
+    overflow-x:hidden;
+}
+
 `;
