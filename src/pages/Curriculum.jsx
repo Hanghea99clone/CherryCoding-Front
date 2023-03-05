@@ -1,63 +1,48 @@
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import ListContainer from "../components/ListContainer";
+import { useDispatch, useSelector } from 'react-redux';
+import { __getCurriculumList } from '../redux/module/getcurriculum';
 
 function Curriculum() {
-  const list = [
-    {
-      id: 1,
-      title: "깃허브 강의",
-      description: `깃허브 강의이이이이이이ㅣㅇㅁ  길이가 짧아서 조금 더 길게 작성할게요 조금만 더 길게 조금만 더  조금만 더 조금만 더 `,
-      price: "무료",
-    },
-    {
-      id: 2,
-      title: "리엑트 강의 ",
-      description:
-        "리액트 알려주는 강의인데요 길이가 짧아서 조금 더 길게 작성할게요 조금만 더 길게  ",
-      price: "무료",
-    },
-    {
-      id: 3,
-      title: "자바스크립트",
-      description:
-        "자바스크립트 강의인데요 길이가 짧아서 조금 더 길게 작성할게요 조금만 더 길게  ",
-      price: "무료",
-    },
-    {
-      id: 4,
-      title: "타입스크립트",
-      description:
-        "타입스크립트 강의인데요 길이가 짧아서 조금 더 길게 작성할게요 조금만 더 길게 ",
-      price: "이것도 무료 ",
-    },
-    {
-      id: 5,
-      title: "뉴진스크립트",
-      description:
-        "뉴진스크립트 강의인데요 길이가 짧아서 조금 더 길게 작성할게요 조금만 더 길게 ",
-      price: "99,999₩ ",
-    },
-    {
-      id: 6,
-      title: "자바자바꽉",
-      description: `자바자바꽉 강의인데요 길이가 짧아서 조금 더 길게 작성할게요 조금만 더 길게 느그 서장
-        남천동 살제`,
-      price: "이것도 무료 ",
-    },
-  ];
+  const dispatch = useDispatch();
+
+  // 첫 로딩될 때 리스트 가져옴
+  const { isLoading, error, getCurriculmList } = useSelector((state) => {
+    return state;
+  });
+  console.log(getCurriculmList)
+  const List = getCurriculmList.data.data.lectureDto
+
+  useEffect(() => {
+    dispatch(__getCurriculumList());
+  }, [dispatch]);
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
 
   return (
     <>
       <Header />
-      <CurriculumNav />
-      <CurriculumContainer>
+      {isLoading ? (
+        <div>로딩중...!</div>
+      )
+        :
+        (
+          <div>
+            <CurriculumNav />
+            <CurriculumContainer>
 
-        <ListContainer />
 
-      </CurriculumContainer>
+
+            </CurriculumContainer>
+          </div>
+        )}
       <Footer />
     </>
   );
