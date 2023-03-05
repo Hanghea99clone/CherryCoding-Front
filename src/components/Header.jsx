@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BsFillBasket3Fill } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -37,16 +36,15 @@ function Header() {
         </HeaderAreaSpan>
         <HeaderBoxDiv>
           {isLogin() ? (
-            <div>
-              <FaUserAlt />
+            <HeaderDiv>
+              <HeaderFaUserAlt />
               <span>{userName.userName}</span>
-            </div>
+            </HeaderDiv>
           ) : (
             <div>
               <HeaderLoginBtn onClick={modalOpenOpen}>로그인</HeaderLoginBtn>
             </div>
           )}
-          <BsFillBasket3Fill />
         </HeaderBoxDiv>
       </HeaderBox>
     </HeaderContainer>
@@ -85,9 +83,14 @@ const HeaderBoxDiv = styled.div`
   width: 115px;
 `;
 
-// const HeaderFaUserAlt = styled(FaUserAlt)`
-//   margin-right: 10px;
-// `;
+const HeaderDiv = styled.div`
+  //border: 1px solid black;
+  display: flex;
+`;
+
+const HeaderFaUserAlt = styled(FaUserAlt)`
+  margin-right: 10px;
+`;
 
 const HeaderLoginBtn = styled.span`
   cursor: pointer;

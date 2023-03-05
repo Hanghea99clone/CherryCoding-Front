@@ -88,22 +88,6 @@ function Home() {
           <HomeCateogry />
           <HomeCateogry />
           <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
-
           {/* 그리드 끝 */}
         </HomeGridArea>
       </HomeImageBox>

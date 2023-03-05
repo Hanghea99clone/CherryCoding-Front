@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { __postLecture } from "../redux/module/registration";
 
 function Registration() {
   const [formImagin, setFormformImagin] = useState(new FormData());
@@ -19,7 +20,7 @@ function Registration() {
   function onChangeimge(e) {
     const img = e.target.files[0];
     const formImg = new FormData();
-    formImg.append("imageFile", img);
+    formImg.append("multipartFile", img);
     const reader = new FileReader();
     setFormformImagin(formImg);
     reader.onloadend = () => {
@@ -35,7 +36,16 @@ function Registration() {
 
   const onValid = (data) => {
     console.log(data);
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.body);
+    formData.append("price", data.price);
+    for (const keyValue of formImagin) {
+      formData.append(keyValue[0], keyValue[1]);
+    }
+    dispatch(__postLecture(formData));
   };
+
   return (
     <SignupContainer>
       <Header />
@@ -67,6 +77,16 @@ function Registration() {
                 required: "제목을 입력해주세요.",
               })}
               placeholder="게시물 제목"
+            />
+          </div>
+          <span>{errors?.title?.message}</span>
+          <div>
+            <Regiinput
+              type="text"
+              {...register("price", {
+                required: "가격을 입력해주세요.",
+              })}
+              placeholder="가격"
             />
           </div>
           <span>{errors?.title?.message}</span>
