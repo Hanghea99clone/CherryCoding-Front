@@ -39,16 +39,18 @@ function Registration() {
       <Header />
       <h2>게시물 등록</h2>
       <SignupBox>
-        <img
-          style={{
-            width: "200px",
-            height: "200px",
-            borderRadius: "20px",
-            marginBottom: "40px",
-          }}
-          src={preview}
-          alt="Preview"
-        />
+        {preview && (
+          <img
+            style={{
+              width: "200px",
+              height: "200px",
+              borderRadius: "20px",
+              marginBottom: "40px",
+            }}
+            src={preview}
+            alt="Preview"
+          />
+        )}
         <SignupForm onSubmit={handleSubmit(onValid)}>
           <RegiinputFile
             as={"input"}
