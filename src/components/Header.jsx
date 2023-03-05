@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillBasket3Fill } from "react-icons/bs";
-//import { FaUserAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { FaUserAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import codingcherrylogo from "../asset/codingcherrylogo.png";
 import { toggle } from "../redux/module/login";
+import isLogin from "../util/token";
 
 function Header() {
   const [login, setLogin] = useState(true);
   const dispatch = useDispatch();
+  const logininfo = useSelector((state) => state);
+  const userName = JSON.parse(localStorage.getItem("userInfo"));
 
-  const modalOpenClose = () => {
+  const modalOpenOpen = () => {
     setLogin(login);
     dispatch(toggle(login));
   };
+
+  useEffect(() => {
+    dispatch(toggle(!login));
+  }, [logininfo.login]);
 
   return (
     <HeaderContainer>
@@ -29,14 +36,16 @@ function Header() {
           <span>CURRICULUM</span>
         </HeaderAreaSpan>
         <HeaderBoxDiv>
-          <div>
-            <HeaderLoginBtn onClick={modalOpenClose}>로그인</HeaderLoginBtn>
-          </div>
-
-          {/* <div>
-            <HeaderFaUserAlt />
-            <span>이름</span>
-          </div> */}
+          {isLogin() ? (
+            <div>
+              <FaUserAlt />
+              <span>{userName.userName}</span>
+            </div>
+          ) : (
+            <div>
+              <HeaderLoginBtn onClick={modalOpenOpen}>로그인</HeaderLoginBtn>
+            </div>
+          )}
           <BsFillBasket3Fill />
         </HeaderBoxDiv>
       </HeaderBox>

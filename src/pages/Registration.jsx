@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
@@ -13,6 +14,7 @@ function Registration() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
 
   function onChangeimge(e) {
     const img = e.target.files[0];

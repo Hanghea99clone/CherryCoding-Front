@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { toggle } from "../redux/module/login";
 import Button from "./Button";
+import { __postLogin } from "../redux/module/postLogin";
+import isLogin from "../util/token";
 
 function Modallogin() {
   const modal = useSelector((state) => state.modal);
@@ -17,7 +19,11 @@ function Modallogin() {
   } = useForm();
 
   const onValid = (data) => {
-    console.log(data);
+    const loginInfo = {
+      username: data.id,
+      password: data.password,
+    };
+    dispatch(__postLogin(loginInfo));
   };
 
   const modalOpenClose = () => {

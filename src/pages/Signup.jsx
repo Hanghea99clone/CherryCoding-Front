@@ -5,7 +5,8 @@ import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Modallogin from "../components/Modallogin";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { __postRegister } from "../redux/module/signup";
 
 function Signup() {
   const {
@@ -16,13 +17,15 @@ function Signup() {
   } = useForm();
 
   const modal = useSelector((state) => state.modal);
+  //const signup = useSelector((state) => console.log(state));
   const [isCheckAll, setIsCheckAll] = useState(false);
+  const dispatch = useDispatch();
 
   function changeAllCheck(e) {
     setIsCheckAll(e.target.checked);
   }
 
-  const onValid = (data) => {
+  const onValid = async (data) => {
     if (isCheckAll && !data.adminPasswd) {
       alert("관리자 비밀번호를 입력해주세요.");
       return;
@@ -31,7 +34,16 @@ function Signup() {
       alert("입력하신 2개의 비밀번호가 일치하지 않습니다.");
       return;
     }
-    console.log(data);
+
+    const userInfo = {
+      username: data.id,
+      password: data.password,
+      nickname: data.nickname,
+      email: data.email,
+      adminToken: "dajfhasdf",
+      admin: false,
+    };
+    dispatch(__postRegister(userInfo));
     reset();
   };
 
@@ -46,14 +58,25 @@ function Signup() {
         <SignupBox>
           <SignupForm onSubmit={handleSubmit(onValid)}>
             <SignupInputArea>
-              <h3>아이디</h3>
+              <h4>이름</h4>
+              <Signupinput
+                {...register("nickname", {
+                  required: "이름을 입력해주세요.",
+                  maxLength: {
+                    value: 10,
+                    message: "10글자 이하이어야 합니다.",
+                  },
+                })}
+                type="text"
+                placeholder="이름"
+              />
+            </SignupInputArea>
+            <span>{errors?.nickname?.message}</span>
+            <SignupInputArea>
+              <h4>아이디</h4>
               <Signupinput
                 {...register("id", {
                   required: "아이디를 입력해주세요.",
-                  minLength: {
-                    value: 10,
-                    message: "10글자 이상이어야 합니다.",
-                  },
                 })}
                 type="text"
                 placeholder="아이디"
@@ -61,7 +84,7 @@ function Signup() {
             </SignupInputArea>
             <span>{errors?.id?.message}</span>
             <SignupInputArea>
-              <h3>이메일 주소</h3>
+              <h4>이메일 주소</h4>
               <Signupinput
                 {...register("email", {
                   required: "이메일를 입력해주세요.",
@@ -76,7 +99,7 @@ function Signup() {
             </SignupInputArea>
             <span>{errors?.email?.message}</span>
             <SignupInputArea>
-              <h3>비밀번호 입력</h3>
+              <h4>비밀번호 입력</h4>
               <Signupinput
                 type="password"
                 {...register("password", {
@@ -93,7 +116,7 @@ function Signup() {
             </SignupInputArea>
             <span>{errors?.password?.message}</span>
             <SignupInputArea>
-              <h3>비밀번호 재입력</h3>
+              <h4>비밀번호 재입력</h4>
               <Signupinput
                 type="password"
                 {...register("passwordCheck", {
@@ -121,7 +144,7 @@ function Signup() {
             </SignupCheckBox>
             {isCheckAll ? (
               <div>
-                <h3>관리자 비밀번호</h3>
+                <h4>관리자 비밀번호</h4>
                 <Signupinput
                   type="password"
                   {...register("adminPasswd", {
