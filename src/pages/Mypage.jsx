@@ -4,7 +4,7 @@ import { FaUserAlt } from "react-icons/fa";
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MyinfoEdit from "../components/Mypage/MyinfoEdit";
-import ListContainer from "../components/Mypage/ListContainer";
+import ListContainer from "../components/ListContainer";
 
 
 

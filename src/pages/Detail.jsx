@@ -244,7 +244,7 @@ const DetailReviewBox = styled.div`
   margin-left: 70px;
   flex-direction: column;
   gap: 20px 0;
-  padding: 1.25rem;
+  padding: 20px;
 `;
 
 const DetailReviewArea = styled.div`
