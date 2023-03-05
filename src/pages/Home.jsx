@@ -86,6 +86,23 @@ function Home() {
         <HomeGridArea>
           {/* 그리드 시작 */}
           <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
+          <HomeCateogry />
 
           {/* 그리드 끝 */}
         </HomeGridArea>

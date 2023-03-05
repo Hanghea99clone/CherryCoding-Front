@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsFillBasket3Fill } from "react-icons/bs";
 //import { FaUserAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import codingcherrylogo from "../asset/codingcherrylogo.png";
 import { toggle } from "../redux/module/login";
@@ -19,7 +20,9 @@ function Header() {
     <HeaderContainer>
       <HeaderBox>
         <div>
-          <HeaderImg src={codingcherrylogo} alt="배경로고" />
+          <Link to={"/"}>
+            <HeaderImg src={codingcherrylogo} alt="배경로고" />
+          </Link>
         </div>
         <HeaderAreaSpan>
           <span>HOME</span>
@@ -44,6 +47,9 @@ function Header() {
 const HeaderContainer = styled.div`
   //border: 1px solid red;
   height: 100px;
+  width: 100%;
+  background-color: white;
+  position: relative;
 `;
 
 const HeaderBox = styled.div`

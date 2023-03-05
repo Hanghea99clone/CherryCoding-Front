@@ -32,6 +32,7 @@ function Footer() {
 const FooterConteiner = styled.div`
   border: 0.0625rem solid black;
   width: 100%;
+  position: absolute;
   height: 8.125rem;
   background: #303347;
   color: #fff;

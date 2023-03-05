@@ -75,18 +75,29 @@ export const HomeGideBoxSpanDivArea = styled.div`
 export const HomeImageBox = styled.div`
   //border: 0.0625rem solid blue;
   width: 100%;
-  margin-top: 50px; ;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const HomeGridArea = styled.div`
   //border: 0.0625rem solid blue;
   display: grid;
+  width: 80%;
   place-items: center;
   grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(3, 1fr);
   row-gap: 100px;
   img {
     width: 300px;
+  }
+  @media screen and (max-width: 1230px) {
+    padding: 30px;
+  }
+  @media screen and (max-width: 1396px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -97,12 +108,21 @@ export const HomeContentsGridArea = styled.div`
   align-items: center;
 `;
 
+export const HomeContentGridImg = styled.img`
+  @media screen and (max-width: 1570px) {
+    max-width: 80%;
+  }
+`;
+
 export const HomeTitleGridArea = styled.div`
   margin-top: 20px;
 `;
 
 export const HomeTitleGrid = styled.span`
   font-size: 20px;
+  @media screen and (max-width: 1570px) {
+    font-size: 16px;
+  }
 `;
 
 export const HomeTextGrid = styled.div`
@@ -114,6 +134,9 @@ export const HomeTextGrid = styled.div`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  @media screen and (max-width: 1285px) {
+    font-size: 15px;
+  }
 `;
 
 export const HomeMiddleTextBox = styled.div`

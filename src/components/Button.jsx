@@ -15,7 +15,6 @@ const BtnStyle = styled.button`
   width: 23.4375rem;
   height: 2.4375rem;
   border: none;
-  border-radius: 0.5rem;
   font-weight: bold;
   cursor: pointer;
   outline: none;
@@ -46,7 +45,10 @@ const BtnStyle = styled.button`
     css`
       width: 11.6875rem;
       height: 60px;
-      background-color: #ff6464;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      background-color: #ff5353;
     `}
 
     ${(props) =>
@@ -54,15 +56,26 @@ const BtnStyle = styled.button`
     css`
       width: 100%;
       height: 50px;
-      background-color: #ff6464;
+      background-color: #ff5353;
     `}
 
     ${(props) =>
     props.signupMdBtn &&
     css`
+      width: 110px;
+      height: 40px;
+      border-radius: 5px;
+      border: 1px solid #e84545;
+      color: red;
+      background-color: white;
+    `}
+    
+    ${(props) =>
+    props.loginSignupMdBtn &&
+    css`
       width: 100%;
       height: 50px;
-      background-color: #64a8c6;
+      background-color: #4e4e4e;
     `}
 `;
 

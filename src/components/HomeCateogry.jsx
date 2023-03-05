@@ -4,13 +4,14 @@ import {
   HomeTitleGridArea,
   HomeTitleGrid,
   HomeTextGrid,
+  HomeContentGridImg,
 } from "../style/Home";
 import DataBase from "../asset/DataBase.png";
 
 function HomeCateogry() {
   return (
     <HomeContentsGridArea>
-      <img src={DataBase} />
+      <HomeContentGridImg src={DataBase} alt="홈 이미지" />
       <HomeTitleGridArea>
         <HomeTitleGrid>
           쉽게 이해하는 인스타그램 데이터 베이스 만들기

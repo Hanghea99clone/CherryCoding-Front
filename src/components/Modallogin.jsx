@@ -37,7 +37,7 @@ function Modallogin() {
               <div>
                 <Modallogininput
                   {...register("id", { required: "아이디를 입력해주세요." })}
-                  placeholder="아이디를 적어주세요"
+                  placeholder="아이디"
                 />
               </div>
               <span>{errors?.id?.message}</span>
@@ -45,28 +45,13 @@ function Modallogin() {
                 {...register("password", {
                   required: "비밀번호를 입력해주세요",
                 })}
-                placeholder="비밀번호를 적어주세요"
+                placeholder="비밀번호"
               />
               <span>{errors?.password?.message}</span>
-              {/* <input
-                {...register("emailCheck", {
-                  required: "이메일로 작성해주세요.",
-                  minLength: {
-                    value: 10,
-                    message: "10글자 이상으로 해주세요",
-                  },
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "이메일 형식만 허용됩니다.",
-                  },
-                })}
-                placeholder="비밀번호를 적어주세요"
-              />
-              <span>{errors?.emailCheck?.message}</span> */}
               <ModalloginBtn loginMdBtn>로그인</ModalloginBtn>
-              <ModalloginBtn onClick={() => navigate(`/signup`)} signupMdBtn>
+              <Button onClick={() => navigate(`/signup`)} loginSignupMdBtn>
                 회원가입
-              </ModalloginBtn>
+              </Button>
             </ModalloginForm>
           </ModalloginInputBox>
         </div>
@@ -89,7 +74,7 @@ const Modalblack = styled.div`
 `;
 
 const Modalback = styled.div`
-  width: 400px;
+  width: 380px;
   height: 380px;
   z-index: 999;
   position: fixed;
@@ -126,12 +111,15 @@ const Modallogininput = styled.input`
   margin-top: 10px;
   padding-left: 12px;
   border: none;
-  border-radius: 4px;
   font-size: 19px;
   font-weight: bold;
   outline: none;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   margin-bottom: 20px;
+  width: 300px;
+  :focus {
+    border-bottom: 1px solid #64a8c6;
+  }
 `;
 
 const ModalloginForm = styled.form`
@@ -141,7 +129,7 @@ const ModalloginForm = styled.form`
 `;
 
 const ModalloginBtn = styled(Button)`
-  margin-top: 15px;
+  margin-top: 32px;
 `;
 
 export default Modallogin;
