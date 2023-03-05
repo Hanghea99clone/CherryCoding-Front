@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import Button from "../components/Button";
@@ -6,11 +6,30 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 function Registration() {
+  const [formImagin, setFormformImagin] = useState(new FormData());
+  const [preview, setPreview] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  function onChangeimge(e) {
+    const img = e.target.files[0];
+    const formImg = new FormData();
+    formImg.append("imageFile", img);
+    const reader = new FileReader();
+    setFormformImagin(formImg);
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+
+    if (img) {
+      reader.readAsDataURL(img);
+    } else {
+      setPreview("");
+    }
+  }
 
   const onValid = (data) => {
     console.log(data);
@@ -20,8 +39,23 @@ function Registration() {
       <Header />
       <h2>게시물 등록</h2>
       <SignupBox>
+        <img
+          style={{
+            width: "200px",
+            height: "200px",
+            borderRadius: "20px",
+            marginBottom: "40px",
+          }}
+          src={preview}
+          alt="Preview"
+        />
         <SignupForm onSubmit={handleSubmit(onValid)}>
-          <RegiinputFile as={"input"} type="file" />
+          <RegiinputFile
+            as={"input"}
+            type="file"
+            accept="image/*"
+            onChange={onChangeimge}
+          />
           <div>
             <Regiinput
               type="text"
