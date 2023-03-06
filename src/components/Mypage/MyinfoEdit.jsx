@@ -2,14 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { FaLock } from "react-icons/fa";
 import Button from '../Button'
+
+
+
 // 내정보 수정을 보여줄 컴포넌트
 function MyinfoEdit() {
+
   return (
     <MypageMyinfoEditContainer>
       <MypageMyinfoEditBox>
         <h2>내 정보 수정</h2>
         <MypageMyinfoEditArea>
-          
+
           <MypageMyinfoEditInputArea>
             <input type="password" />
             <label>현재패스워드 입력</label>

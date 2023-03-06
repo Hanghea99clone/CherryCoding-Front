@@ -1,20 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 
 // 리스트를 보여줄 컴포넌트
-const ListContainer = () => {
+const ListContainer = (item) => {
+
+  const navigate = useNavigate();
+  const onClickDetailPage = (id) => {
+    navigate(`/detail/${id}`)
+  }
+
+  // console.log(item)
+  // console.log(item.item)
   return (
     <MypageListBox>
       <MypageListArea>
-        <MypageListDivImg>
-          <img src="https://codingapple.com/wp-content/uploads/2020/02/%EC%83%81%ED%92%88%EC%82%AC%EC%A7%84%EC%98%A8%EB%9D%BC%EC%9D%B8_1.png" />
+        <MypageListDivImg onClick={(() => { onClickDetailPage(item.item.id) })}>
+          <img src={item.item.imageUrl} />
         </MypageListDivImg>
 
         <MypageListDivText>
 
           <MypageListTextTitle>
-            <a>쉽게 이해하는 JavaScript 객체지향 & ES6 신문법</a>
+            <a onClick={(() => { onClickDetailPage(item.item.id) })}>{item.item.title}</a>
           </MypageListTextTitle>
 
           <MypageListTextStar>
@@ -22,7 +31,7 @@ const ListContainer = () => {
           </MypageListTextStar>
 
           <MypageListTextBody>
-            <p> 실제 웹 UI를 여러개 만들어보며 배워보는 JavaScript 기초 수업입니다. 문법만 쭉 나열하면서 가르치면 재미없어서 강의 끄고 유튜브 보러갈 것이 뻔하니 실무 예제 중심의…</p>
+            <p> {item.item.content}</p>
           </MypageListTextBody>
 
 
@@ -66,6 +75,7 @@ const MypageListDivImg = styled.div`
     width: 100%;
     height: 100%;
     border-radius: .625rem;
+    object-fit: cover;
   }
   :hover {
     transform: scale(0.97);

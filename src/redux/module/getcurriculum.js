@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const __getCurriculumList = createAsyncThunk(
-    "getCurriculm",
+    "getCurriculmList",
     async (arg, thunkAPI) => {
         try {
             const response = await axios.get('http://3.37.146.173:8080/api/lecture')

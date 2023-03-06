@@ -1,11 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Button from '../components/Button'
 import { useForm } from "react-hook-form";
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 
 function Detail() {
+  const params = useParams();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getDetailCurriculumList(params));
+  }, [dispatch]);
+
+
+  const { isLoading, error, getDetailCurriculumList } = useSelector((state) => {
+    return state
+  });
+
+  const List = getDetailCurriculumList.data.data
+  console.log(List)
+  // console.log(getCurriculmList.data.data.lectureDto)
+  // const List = getCurriculmList.data.data?.lectureDto
+
+  const ListReview = List?.reviewList
+  // reviewContent
+
+
+
   const { register, handleSubmit } = useForm();
 
   const [textValue, setTextValue] = useState('')
@@ -17,29 +43,35 @@ function Detail() {
 
       {/* 상세페이지 설명글  */}
       <DetailNavListBox>
-        <h6> 홈 / 강좌 / WEB / (무료) 매우쉽게 알려주는 GIT & GITHUB</h6>
-        <h2>(무료) 매우쉽게 알려주는 git & github</h2>
-        <h6> ( 29 리뷰 )  13323 수강생</h6>
+        <h6> 홈 / 강좌 / WEB / ({List?.price}원)  {List?.title}</h6>
+        <h2>({List?.price}원,) {List?.title}</h2>
+        <h6> ( {List?.reviewCnt} 리뷰 )   수강생</h6>
       </DetailNavListBox>
 
 
       <DetailImgTextBox>
 
         <DetailImgArea>
-          <img src="https://codingapple.com/wp-content/uploads/2022/06/%EC%83%81%ED%92%88%EC%82%AC%EC%A7%84%EC%98%A8%EB%9D%BC%EC%9D%B8.png" />
+          <img src={List?.imageUrl} />
         </DetailImgArea>
 
         <DetailTextArea>
 
           <DetailTextArea2>
-            <Button style={{ width: '220px', height: '80px', backgroundColor: "#ff5554", color: "#fff" }}>수강 계속하기</Button>
+            {
+              List?.isEnrolled == false ? <Button style={{ width: '220px', height: '80px', backgroundColor: "#ff5554", color: "#fff" }}>수강 계속하기</Button> :
+                (
+                  <Button style={{ width: '220px', height: '80px', backgroundColor: "#ff5554", color: "#fff" }}>수강 신청하기</Button>
+                )
+            }
+
             <ul>
               <li>수강중</li>
               <li>강의 남은기간</li>
             </ul>
           </DetailTextArea2>
 
-          <h5>13351명의 수강생</h5>
+          <h5>{List?.studentCnt}명 수강생</h5>
 
           <Button sm
             style={{ marginTop: "20px" }}>영상 버퍼링이슈가 있다면 ▶</Button>
@@ -87,25 +119,22 @@ function Detail() {
       {/* 강좌에대한 리뷰가 들어가는 곳입니다!  */}
       <DetailReviewBox>
 
-        <h2>깃허브 강좌 Review</h2>
-        <DetailReviewArea>
-          <h3>양방향통신</h3>
-          <p>ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅋㅌㅊㄴㅋㅁㅇㅁㄴㅇㅁㄴ
-            ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴ
-            ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ
-            ㅁㄴㅇㅁㄴㅇㅁㄴ
-          </p>
-        </DetailReviewArea>
+        <h2>{List?.title}의 강좌 리뷰</h2>
 
-        <DetailReviewArea>
-          <h3>통신</h3>
-          <p>ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅋㅌㅊㄴㅋㅁㅇㅁㄴㅇㅁㄴ
-            ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴ
-            ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ
-            ㅁㄴㅇㅁㄴㅇㅁㄴ
-          </p>
-        </DetailReviewArea>
-
+        {
+          ListReview?.map((item) => {
+            console.log(item)
+            return (
+              <DetailReviewArea key={item.id}>
+                <h3>{item.reviewTitle}</h3>
+                <p>{item.reviewContent}</p>
+                <span>{item.nickname}</span>
+                <Button smBtn>수정</Button>
+                <Button smBtn>삭제</Button>
+              </DetailReviewArea>
+            )
+          })
+        }
 
 
       </DetailReviewBox>
@@ -177,12 +206,13 @@ const DetailImgTextBox = styled.div`
 `;
 
 const DetailImgArea = styled.div`
-  width: 75%;
+  width: 65%;
   height: 100%;
   > img {
     width: 95%;
-    height: 100%;  
+    height: 90%;  
     border-radius: .625rem;
+    object-fit: cover;
   }
 `;
 
