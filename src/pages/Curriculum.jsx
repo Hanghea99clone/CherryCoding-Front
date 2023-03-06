@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -6,16 +6,19 @@ import { Link } from "react-router-dom";
 import ListContainer from "../components/ListContainer";
 import { useDispatch, useSelector } from 'react-redux';
 import { __getCurriculumList } from '../redux/module/getcurriculum';
+import { Loading } from '../components/Loading'
 
 function Curriculum() {
   const dispatch = useDispatch();
 
   // 첫 로딩될 때 리스트 가져옴
   const { isLoading, error, getCurriculmList } = useSelector((state) => {
-    return state;
+    return state
   });
-  console.log(getCurriculmList)
-  const List = getCurriculmList.data.data.lectureDto
+
+
+  // console.log(getCurriculmList.data.data.lectureDto)
+  const List = getCurriculmList.data.data?.lectureDto
 
   useEffect(() => {
     dispatch(__getCurriculumList());
@@ -24,27 +27,42 @@ function Curriculum() {
   if (error) {
     return <div>{error.message}</div>;
   }
+  if (isLoading) {
+    return <Loading />
+  }
 
 
   return (
     <>
-      <Header />
-      {isLoading ? (
-        <div>로딩중...!</div>
-      )
-        :
-        (
-          <div>
-            <CurriculumNav />
-            <CurriculumContainer>
+      {/* 로딩일떄 스피너 보여주기 */}
+      {isLoading && true ? (
+        <Loading />
+      ) : (
+        // 로딩이 아닐떄
+        <>
+
+          <Header />
+
+          <CurriculumNav />
+          <CurriculumContainer>
+
+            {
+              List?.map((item) => {
+                return <ListContainer item={item} key={item.id} />
+              })
+            }
 
 
+          </CurriculumContainer>
 
-            </CurriculumContainer>
-          </div>
-        )}
-      <Footer />
+
+          <Footer />
+        </>
+      )}
+
+
     </>
+
   );
 }
 
