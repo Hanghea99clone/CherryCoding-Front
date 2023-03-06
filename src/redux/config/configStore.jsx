@@ -5,6 +5,7 @@ import postLogin from "../module/postLogin";
 import postLecture from "../module/registration";
 import getCurriculmList from "../module/getcurriculum";
 import getDetailCurriculumList from "../module/getdetailcurriculum";
+import postReview from "../module/addreview";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     login: postLogin.reducer,
     lecture: postLecture.reducer,
     getCurriculmList: getCurriculmList.reducer,
-    getDetailCurriculumList: getDetailCurriculumList.reducer
+    getDetailCurriculumList: getDetailCurriculumList.reducer,
+    addreview: postReview.reducer,
   },
 });
 
