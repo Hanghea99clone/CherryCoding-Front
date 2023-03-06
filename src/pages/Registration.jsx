@@ -84,11 +84,15 @@ function Registration() {
               type="text"
               {...register("price", {
                 required: "가격을 입력해주세요.",
+                pattern: {
+                  value: /^\d+$/,
+                  message: "숫자만 입력가능합니다.",
+                },
               })}
               placeholder="가격"
             />
           </div>
-          <span>{errors?.title?.message}</span>
+          <span>{errors?.price?.message}</span>
           <div>
             <RegiTextarea
               as={"textarea"}

@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Modallogin from "../components/Modallogin";
 import { useDispatch, useSelector } from "react-redux";
 import { __postRegister } from "../redux/module/signup";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const {
@@ -20,12 +21,41 @@ function Signup() {
   //const signup = useSelector((state) => console.log(state));
   const [isCheckAll, setIsCheckAll] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function changeAllCheck(e) {
     setIsCheckAll(e.target.checked);
   }
 
   const onValid = async (data) => {
+    if (isCheckAll) {
+      const adminInfo = {
+        username: data.id,
+        password: data.password,
+        nickname: data.nickname,
+        email: data.email,
+        adminToken: "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC",
+        admin: true,
+      };
+      dispatch(__postRegister(adminInfo));
+      reset();
+      navigate("/");
+      alert("회원가입 완료");
+    } else {
+      const userInfo = {
+        username: data.id,
+        password: data.password,
+        nickname: data.nickname,
+        email: data.email,
+        adminToken: "dajfhasdf",
+        admin: false,
+      };
+      dispatch(__postRegister(userInfo));
+      reset();
+      navigate("/");
+      alert("회원가입 완료");
+    }
+
     if (isCheckAll && !data.adminPasswd) {
       alert("관리자 비밀번호를 입력해주세요.");
       return;
@@ -34,17 +64,6 @@ function Signup() {
       alert("입력하신 2개의 비밀번호가 일치하지 않습니다.");
       return;
     }
-
-    const userInfo = {
-      username: data.id,
-      password: data.password,
-      nickname: data.nickname,
-      email: data.email,
-      adminToken: "dajfhasdf",
-      admin: false,
-    };
-    dispatch(__postRegister(userInfo));
-    reset();
   };
 
   return (
@@ -77,6 +96,10 @@ function Signup() {
               <Signupinput
                 {...register("id", {
                   required: "아이디를 입력해주세요.",
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{1,}$/,
+                    message: "숫자와 영문자를 적어도 1개 이상 포함해야 합니다.",
+                  },
                 })}
                 type="text"
                 placeholder="아이디"

@@ -5,21 +5,30 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import codingcherrylogo from "../asset/codingcherrylogo.png";
 import { toggle } from "../redux/module/login";
+import { myModal } from "../redux/module/mymodal";
 import isLogin from "../util/token";
 
 function Header() {
   const [login, setLogin] = useState(true);
+  const [mymodal, setMymodal] = useState(false);
   const dispatch = useDispatch();
   const logininfo = useSelector((state) => state);
   const userName = JSON.parse(localStorage.getItem("userInfo"));
 
   const modalOpenOpen = () => {
-    setLogin(login);
     dispatch(toggle(login));
   };
 
+  const mymodalOpen = () => {
+    const newMymodal = !mymodal;
+    setMymodal(newMymodal);
+    dispatch(myModal(newMymodal));
+  };
+
   useEffect(() => {
-    dispatch(toggle(!login));
+    if (logininfo.login) {
+      dispatch(toggle(false));
+    }
   }, [logininfo.login]);
 
   return (
@@ -32,12 +41,14 @@ function Header() {
         </div>
         <HeaderAreaSpan>
           <span>HOME</span>
-          <span>CURRICULUM</span>
+          <Link to={"/curriculum"}>
+            <span>CURRICULUM</span>
+          </Link>
         </HeaderAreaSpan>
         <HeaderBoxDiv>
           {isLogin() ? (
             <HeaderDiv>
-              <HeaderFaUserAlt />
+              <HeaderMymodal onClick={() => mymodalOpen()} />
               <span>{userName.userName}</span>
             </HeaderDiv>
           ) : (
@@ -93,6 +104,10 @@ const HeaderFaUserAlt = styled(FaUserAlt)`
 `;
 
 const HeaderLoginBtn = styled.span`
+  cursor: pointer;
+`;
+
+const HeaderMymodal = styled(HeaderFaUserAlt)`
   cursor: pointer;
 `;
 

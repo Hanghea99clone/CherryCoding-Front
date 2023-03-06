@@ -16,4 +16,9 @@ body {
     overflow-x:hidden;
 }
 
+a {
+    color:inherit;
+    text-decoration:none;
+}
+
 `;

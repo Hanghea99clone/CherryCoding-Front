@@ -48,10 +48,14 @@ function Detail() {
     });
   };
 
+  const onDeleteBtnHandler = async (id) => {
+    // dispatch(deleteReview(id));
+    dispatch(__getDetailCurriculumList());
+  };
+
   return (
     <div>
       <Header />
-
       <DetailContainer>
         {/* 상세페이지 설명글  */}
         <DetailNavListBox>
@@ -142,8 +146,10 @@ function Detail() {
                 <h3>{item.reviewTitle}</h3>
                 <p>{item.reviewContent}</p>
                 <span>{item.nickname}</span>
-                <Button smBtn>수정</Button>
-                <Button smBtn>삭제</Button>
+                <Button>수정</Button>
+                <Button onClick={() => onDeleteBtnHandler(item.id)}>
+                  삭제
+                </Button>
               </DetailReviewArea>
             );
           })}
