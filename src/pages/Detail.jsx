@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 import { __postReview } from "../redux/module/addreview";
+import { __deleteReview } from "../redux/module/deletereview";
 
 function Detail() {
   const params = useParams();
@@ -49,8 +50,13 @@ function Detail() {
   };
 
   const onDeleteBtnHandler = async (id) => {
-    // dispatch(deleteReview(id));
-    dispatch(__getDetailCurriculumList());
+    const confirmText = window.confirm("정말로 삭제하시겠습니까?");
+    if (confirmText) {
+      await dispatch(__deleteReview(id));
+      await dispatch(__getDetailCurriculumList(params));
+    } else {
+      return;
+    }
   };
 
   return (
