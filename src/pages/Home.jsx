@@ -36,24 +36,44 @@ import explain from "../asset/explain.png";
 import tablet from "../asset/tablet.png";
 import footerimage from "../asset/footerimage.png";
 import Modallogin from "../components/Modallogin";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HomeCateogry from "../components/HomeCateogry";
+import Aboutmymodal from "../components/Aboutmymodal";
+import { myModal } from "../redux/module/mymodal";
+import { useEffect } from "react";
+import { __getCurriculumList } from "../redux/module/getcurriculum";
 
 function Home() {
   const modal = useSelector((state) => state.modal);
+  const mymodal = useSelector((state) => state.mymodal);
+  const dispatch = useDispatch();
+  const { isLoading, error, getCurriculmList } = useSelector((state) => {
+    return state;
+  });
+
+  const List = getCurriculmList.data.data?.lectureDto;
+
+  useEffect(() => {
+    dispatch(myModal(false));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(__getCurriculumList());
+  }, [dispatch]);
 
   return (
     <div>
       <Header />
       <HomeBox>
         {modal ? <Modallogin /> : null}
+        {mymodal ? <Aboutmymodal /> : null}
         <HomeBoxDiv>
           <div>
             <h1>
               포트폴리오 완성까지 책임지는
               <br />
             </h1>
-            <h1>Oline 프로그래밍 강좌</h1>
+            <h1>Online 프로그래밍 강좌</h1>
           </div>
           <div>
             <span>
@@ -85,9 +105,17 @@ function Home() {
       <HomeImageBox>
         <HomeGridArea>
           {/* 그리드 시작 */}
-          <HomeCateogry />
-          <HomeCateogry />
-          <HomeCateogry />
+
+          {List?.map((item) => {
+            return (
+              <HomeCateogry
+                key={item.id}
+                content={item.content}
+                imageUrl={item.imageUrl}
+                title={item.title}
+              />
+            );
+          })}
           {/* 그리드 끝 */}
         </HomeGridArea>
       </HomeImageBox>

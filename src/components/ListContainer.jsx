@@ -1,50 +1,56 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 // 리스트를 보여줄 컴포넌트
 const ListContainer = (item) => {
-
   const navigate = useNavigate();
   const onClickDetailPage = (id) => {
-    navigate(`/detail/${id}`)
-  }
+    navigate(`/detail/${id}`);
+  };
 
   // console.log(item)
   // console.log(item.item)
   return (
     <MypageListBox>
       <MypageListArea>
-        <MypageListDivImg onClick={(() => { onClickDetailPage(item.item.id) })}>
-          <img src={item.item.imageUrl} />
+        <MypageListDivImg
+          onClick={() => {
+            onClickDetailPage(item?.item?.id);
+          }}
+        >
+          <img src={item?.item?.imageUrl} />
         </MypageListDivImg>
 
         <MypageListDivText>
-
           <MypageListTextTitle>
-            <a onClick={(() => { onClickDetailPage(item.item.id) })}>{item.item.title}</a>
+            <a
+              onClick={() => {
+                onClickDetailPage(item?.item?.id);
+              }}
+            >
+              {item?.item?.title}
+            </a>
           </MypageListTextTitle>
 
           <MypageListTextStar>
-            <a>리뷰<MypageListTextReview>(33 리뷰)</MypageListTextReview></a>
+            <a>
+              리뷰<MypageListTextReview>(33 리뷰)</MypageListTextReview>
+            </a>
           </MypageListTextStar>
 
           <MypageListTextBody>
-            <p> {item.item.content}</p>
+            <p> {item?.item?.content}</p>
           </MypageListTextBody>
-
 
           <MypageListTextBtn>
             <p>100원</p>
           </MypageListTextBtn>
-
         </MypageListDivText>
-
       </MypageListArea>
     </MypageListBox>
-  )
-}
+  );
+};
 
 export default ListContainer;
 
@@ -53,12 +59,12 @@ const MypageListBox = styled.div`
   width: 90%;
   margin: 0 auto;
   border-top: 1px solid gray;
-`
+`;
 
 const MypageListArea = styled.div`
   width: 100%;
   height: 315px;
-  border-top: 1px solid rgba(0,0,0,.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   margin: 0px auto;
   display: flex;
   flex-direction: row;
@@ -71,10 +77,10 @@ const MypageListDivImg = styled.div`
   height: 85%;
   margin: 0 auto;
   ${(props) => props.theme.FelexCenter};
-  > img { 
+  > img {
     width: 100%;
     height: 100%;
-    border-radius: .625rem;
+    border-radius: 0.625rem;
     object-fit: cover;
   }
   :hover {
@@ -89,12 +95,12 @@ const MypageListDivText = styled.div`
   width: 65%;
   height: 85%;
   /* border: 1px solid red; */
-  `;
+`;
 
 const MypageListTextTitle = styled.div`
   width: 100%;
   text-align: left;
-    > a {
+  > a {
     color: #105796;
     padding-left: 1.25rem;
     font-size: 16px;
@@ -111,17 +117,17 @@ const MypageListTextStar = styled.div`
   height: 10%;
   padding: 5px;
   > a {
-    padding: .9375rem;
+    padding: 0.9375rem;
     font-size: 16px;
     display: flex;
     align-items: center;
   }
 `;
 const MypageListTextReview = styled.span`
-  padding-left: .3125rem;
+  padding-left: 0.3125rem;
   font-size: 12px;
   color: #888;
-  `;
+`;
 
 const MypageListTextBody = styled.div`
   widows: 100%;
@@ -130,35 +136,31 @@ const MypageListTextBody = styled.div`
   align-items: center;
   text-align: left;
   > p {
-    padding: .9375rem;
+    padding: 0.9375rem;
     font-size: 14px;
-    color: rgb(68,68,68);
+    color: rgb(68, 68, 68);
   }
 `;
 
 const MypageListTextBtn = styled.div`
-    width: 100%;
-    height: 40%;
-    /* border: 1px solid red; */
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    > p{ 
+  width: 100%;
+  height: 40%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  > p {
     display: flex;
     font-size: 20px;
     color: #ec625b;
- 
+
     margin-top: 5rem;
     cursor: pointer;
-    }
-    > p:hover {  
+  }
+  > p:hover {
     transform: scale(1.1);
     transition: 0.4s;
-    text-shadow: 
-    0px 0px 4px #ccc, 
-    0px -5px 4px #ff3, 
-    2px -10px 6px #fd3, 
-    -2px -15px 11px #680, 
-    2px -19px 18px #f20;
+    text-shadow: 0px 0px 4px #ccc, 0px -5px 4px #ff3, 2px -10px 6px #fd3,
+      -2px -15px 11px #680, 2px -19px 18px #f20;
   }
-`
+`;

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { toggle } from "../redux/module/login";
 import Button from "./Button";
 import { __postLogin } from "../redux/module/postLogin";
-import isLogin from "../util/token";
 
 function Modallogin() {
   const modal = useSelector((state) => state.modal);
@@ -52,6 +51,7 @@ function Modallogin() {
                   required: "비밀번호를 입력해주세요",
                 })}
                 placeholder="비밀번호"
+                type="password"
               />
               <span>{errors?.password?.message}</span>
               <ModalloginBtn loginMdBtn>로그인</ModalloginBtn>

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = false;
 
 const modaltoggle = createSlice({
-  name: "toDosReducer",
+  name: "loginReducer",
   initialState,
   reducers: {
     toggle: (_, action) => action.payload,
