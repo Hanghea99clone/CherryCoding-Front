@@ -16,14 +16,14 @@ const ListContainer = (item) => {
   return (
     <MypageListBox>
       <MypageListArea>
-        <MypageListDivImg onClick={(() => { onClickDetailPage(item.item.id) })}>
-          <img src={item.item.imageUrl} />
+        <MypageListDivImg onClick={(() => { onClickDetailPage(item?.item?.id) })}>
+          <img src={item?.item?.imageUrl} />
         </MypageListDivImg>
 
         <MypageListDivText>
 
           <MypageListTextTitle>
-            <a onClick={(() => { onClickDetailPage(item.item.id) })}>{item.item.title}</a>
+            <a onClick={(() => { onClickDetailPage(item?.item?.id) })}>{item?.item?.title}</a>
           </MypageListTextTitle>
 
           <MypageListTextStar>
@@ -31,7 +31,7 @@ const ListContainer = (item) => {
           </MypageListTextStar>
 
           <MypageListTextBody>
-            <p> {item.item.content}</p>
+            <p> {item?.item?.content}</p>
           </MypageListTextBody>
 
 
