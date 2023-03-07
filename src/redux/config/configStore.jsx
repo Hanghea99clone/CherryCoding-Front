@@ -8,7 +8,11 @@ import getDetailCurriculumList from "../module/getdetailcurriculum";
 import postReview from "../module/addreview";
 import myModal from "../module/mymodal";
 import deleteReview from "../module/deletereview";
+<<<<<<< HEAD
 import getInfinitiScroll from "../module/infinitiscroll";
+=======
+import editReview from "../module/editreview";
+>>>>>>> origin/goomin
 
 const store = configureStore({
   reducer: {
@@ -21,7 +25,11 @@ const store = configureStore({
     addreview: postReview.reducer,
     mymodal: myModal.reducer,
     deletereview: deleteReview.reducer,
+<<<<<<< HEAD
     infinite: getInfinitiScroll.reducer,
+=======
+    putreview: editReview,
+>>>>>>> origin/goomin
   },
 });
 
