@@ -9,12 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 import { __postReview } from "../redux/module/addreview";
 import { __deleteReview } from "../redux/module/deletereview";
-<<<<<<< HEAD
 import { myModal } from "../redux/module/mymodal";
 import Aboutmymodal from "../components/Aboutmymodal";
-=======
 import { __editReview } from "../redux/module/editreview";
->>>>>>> origin/goomin
 
 function Detail() {
   const params = useParams();
