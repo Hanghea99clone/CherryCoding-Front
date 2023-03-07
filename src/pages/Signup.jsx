@@ -18,6 +18,8 @@ function Signup() {
   } = useForm();
 
   const modal = useSelector((state) => state.modal);
+  const siginup = useSelector((state) => state);
+  console.log(siginup);
   //const signup = useSelector((state) => console.log(state));
   const [isCheckAll, setIsCheckAll] = useState(false);
   const dispatch = useDispatch();
@@ -40,7 +42,6 @@ function Signup() {
       dispatch(__postRegister(adminInfo));
       reset();
       navigate("/");
-      alert("회원가입 완료");
     } else {
       const userInfo = {
         username: data.id,
@@ -53,7 +54,6 @@ function Signup() {
       dispatch(__postRegister(userInfo));
       reset();
       navigate("/");
-      alert("회원가입 완료");
     }
 
     if (isCheckAll && !data.adminPasswd) {

@@ -12,7 +12,7 @@ import deleteReview from "../module/deletereview";
 const store = configureStore({
   reducer: {
     modal: modallogin.reducer,
-    register: register.reducer,
+    signup: register.reducer,
     login: postLogin.reducer,
     lecture: postLecture.reducer,
     getCurriculmList: getCurriculmList.reducer,

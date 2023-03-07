@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { __postLecture } from "../redux/module/registration";
+import Aboutmymodal from "../components/Aboutmymodal";
+import { myModal } from "../redux/module/mymodal";
 
 function Registration() {
   const [formImagin, setFormformImagin] = useState(new FormData());
@@ -25,6 +27,10 @@ function Registration() {
       navigate("/");
     }
   }, []);
+
+  useEffect(() => {
+    dispatch(myModal(false));
+  }, [dispatch]);
 
   function onChangeimge(e) {
     const img = e.target.files[0];
@@ -53,10 +59,12 @@ function Registration() {
     }
     dispatch(__postLecture(formData));
   };
+  const mymodal = useSelector((state) => state.mymodal);
 
   return (
     <SignupContainer>
       <Header />
+      {mymodal ? <Aboutmymodal /> : null}
       <h2>게시물 등록</h2>
       <SignupBox>
         {preview && (

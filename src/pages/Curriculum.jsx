@@ -7,9 +7,12 @@ import ListContainer from "../components/ListContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { __getCurriculumList } from "../redux/module/getcurriculum";
 import { Loading } from "../components/Loading";
+import Aboutmymodal from "../components/Aboutmymodal";
+import { myModal } from "../redux/module/mymodal";
 
 function Curriculum() {
   const dispatch = useDispatch();
+  const mymodal = useSelector((state) => state.mymodal);
 
   // 첫 로딩될 때 리스트 가져옴
   const { isLoading, error, getCurriculmList } = useSelector((state) => {
@@ -21,6 +24,10 @@ function Curriculum() {
 
   useEffect(() => {
     dispatch(__getCurriculumList());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(myModal(false));
   }, [dispatch]);
 
   if (error) {
@@ -39,7 +46,7 @@ function Curriculum() {
         // 로딩이 아닐떄
         <>
           <Header />
-
+          {mymodal ? <Aboutmymodal /> : null}
           <CurriculumNav />
           <CurriculumContainer>
             {List?.map((item) => {

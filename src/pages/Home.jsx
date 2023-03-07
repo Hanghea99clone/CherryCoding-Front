@@ -42,6 +42,7 @@ import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
 import { useEffect } from "react";
 import { __getCurriculumList } from "../redux/module/getcurriculum";
+import { Link } from "react-router-dom";
 
 function Home() {
   const modal = useSelector((state) => state.modal);
@@ -108,12 +109,13 @@ function Home() {
 
           {List?.map((item) => {
             return (
-              <HomeCateogry
-                key={item.id}
-                content={item.content}
-                imageUrl={item.imageUrl}
-                title={item.title}
-              />
+              <Link key={item.id} to={`/detail/${item.id}`}>
+                <HomeCateogry
+                  content={item.content}
+                  imageUrl={item.imageUrl}
+                  title={item.title}
+                />
+              </Link>
             );
           })}
           {/* 그리드 끝 */}

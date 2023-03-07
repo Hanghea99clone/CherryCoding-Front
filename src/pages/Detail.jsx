@@ -9,14 +9,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 import { __postReview } from "../redux/module/addreview";
 import { __deleteReview } from "../redux/module/deletereview";
+import { myModal } from "../redux/module/mymodal";
+import Aboutmymodal from "../components/Aboutmymodal";
 
 function Detail() {
   const params = useParams();
-
+  const mymodal = useSelector((state) => state.mymodal);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(__getDetailCurriculumList(params));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(myModal(false));
   }, [dispatch]);
 
   const { isLoading, error, getDetailCurriculumList } = useSelector((state) => {
@@ -62,6 +68,7 @@ function Detail() {
   return (
     <div>
       <Header />
+      {mymodal ? <Aboutmymodal /> : null}
       <DetailContainer>
         {/* 상세페이지 설명글  */}
         <DetailNavListBox>

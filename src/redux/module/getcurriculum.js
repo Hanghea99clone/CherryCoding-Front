@@ -6,12 +6,8 @@ export const __getCurriculumList = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const response = await axios.get("http://3.37.146.173:8080/api/lecture");
-      console.log("response", response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      console.log("erroe", error);
-      // 오류시 사용하는 API
-      // 네크워크에 요청에 실패한 경우 dispatch 해주는 기능이다
       return thunkAPI.rejectWithValue(error);
     }
   }

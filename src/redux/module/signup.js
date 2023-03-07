@@ -9,9 +9,18 @@ export const __postRegister = createAsyncThunk(
         "http://3.37.146.173:8080/api/user/signup",
         datas
       );
-      return thunkAPI.fulfillWithValue(response.data);
+      console.log(response?.data.statusCode);
+      alert(
+        response?.data.statusCode === 200
+          ? "회원가입 성공"
+          : "회원가입에 문제가 생겼습니다."
+      );
     } catch (e) {
-      console.log(e);
+      alert(
+        e.response.status === 400
+          ? "이미 존재하는 회원이거나 잘못된 회원입니다."
+          : "문제가 생겼습니다."
+      );
     }
   }
 );
