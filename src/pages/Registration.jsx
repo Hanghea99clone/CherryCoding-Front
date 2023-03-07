@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
@@ -16,6 +17,14 @@ function Registration() {
     formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
+  const isAdmin = JSON.parse(localStorage.getItem("userInfo"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAdmin?.isAdmin) {
+      navigate("/");
+    }
+  }, []);
 
   function onChangeimge(e) {
     const img = e.target.files[0];

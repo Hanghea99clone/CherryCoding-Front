@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { toggle } from "../redux/module/login";
 import { myModal } from "../redux/module/mymodal";
+import { FaUserAlt } from "react-icons/fa";
 
 function Aboutmymodal() {
   const userName = JSON.parse(localStorage.getItem("userInfo"));
   const [, , removeCookie] = useCookies(["access_token"]);
   const [loginmypage, setLoginmypage] = useState(true);
   const dispatch = useDispatch();
+  const isAdmin = JSON.parse(localStorage.getItem("userInfo"));
 
   function logoutpage() {
     removeCookie("access_token");
@@ -22,9 +24,14 @@ function Aboutmymodal() {
   return (
     <AboutmymodalDivBox>
       <AboutmymodalDivArea>
-        <AboutmymodalSpanArea>
-          <span>{userName?.userName}</span>
-        </AboutmymodalSpanArea>
+        <AboutmymodalFirstSpanArea>
+          <div>
+            <FaUserAlt size={"35"} />
+          </div>
+          <div>
+            <AboutmymodalFirstSpan>{userName?.userName}</AboutmymodalFirstSpan>
+          </div>
+        </AboutmymodalFirstSpanArea>
         <AboutmymodalSpanArea>
           <AboutmymodalLogout onClick={logoutpage}>로그아웃</AboutmymodalLogout>
         </AboutmymodalSpanArea>
@@ -33,27 +40,35 @@ function Aboutmymodal() {
             <span>마이페이지</span>
           </Link>
         </AboutmymodalSpanArea>
+        {isAdmin.isAdmin === "true" ? (
+          <AboutmymodalSpanArea>
+            <Link to={`/registration`}>
+              <span>등록하기</span>
+            </Link>
+          </AboutmymodalSpanArea>
+        ) : null}
       </AboutmymodalDivArea>
     </AboutmymodalDivBox>
   );
 }
 
 const AboutmymodalDivBox = styled.div`
-  border: 1px solid black;
+  //border: 1px solid black;
   width: 250px;
-  height: 100px;
+  height: 200px;
   background-color: rgb(49, 59, 61);
   color: white;
-  position: fixed;
-  top: 20;
+  position: absolute;
+  top: 6.25rem;
   right: 12.5rem;
   z-index: 11;
+  border-radius: 10px;
 `;
 
 const AboutmymodalDivArea = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  //border: 1px solid black;
   height: 100%;
   width: 100%;
 `;
@@ -69,8 +84,21 @@ const AboutmymodalSpanArea = styled.div`
   width: 100%;
 `;
 
+const AboutmymodalFirstSpanArea = styled.div`
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid white;
+`;
+
+const AboutmymodalFirstSpan = styled.span`
+  font-size: 17px;
+`;
+
 const AboutmymodalLogout = styled.span`
   cursor: pointer;
+  display: flex;
 `;
 
 export default Aboutmymodal;

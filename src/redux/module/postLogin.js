@@ -14,6 +14,7 @@ export const __postLogin = createAsyncThunk(
         "userInfo",
         JSON.stringify({
           userName: `${response.data.data.username}`,
+          isAdmin: `${response.data.data.isAdmin}`,
         })
       );
       HandleToken(response.headers.authorization);
