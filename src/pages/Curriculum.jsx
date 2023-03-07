@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,54 +9,51 @@ import { __getCurriculumList } from "../redux/module/getcurriculum";
 import { Loading } from "../components/Loading";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
+import { useInView } from "react-intersection-observer";
+import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
 
 function Curriculum() {
+  const page = useRef(1);
+  const [ref, inView] = useInView();
   const dispatch = useDispatch();
   const mymodal = useSelector((state) => state.mymodal);
 
-  // 첫 로딩될 때 리스트 가져옴
-  const { isLoading, error, getCurriculmList } = useSelector((state) => {
-    return state;
-  });
-
-  // console.log(getCurriculmList.data.data.lectureDto)
-  const List = getCurriculmList.data.data?.lectureDto;
+  const {
+    data,
+    isLoading: infinityLoading,
+    error: isEror,
+  } = useSelector((state) => state.infinite);
 
   useEffect(() => {
-    dispatch(__getCurriculumList());
-  }, [dispatch]);
-
-  useEffect(() => {
+    dispatch(__getInfinitiScroll({ page: page.current }));
     dispatch(myModal(false));
   }, [dispatch]);
 
-  if (error) {
-    return <div>{error.message}</div>;
-  }
-  if (isLoading) {
-    return <Loading />;
-  }
+  useEffect(() => {
+    if (inView) {
+      page.current += 1;
+      dispatch(__getInfinitiScroll({ page: page.current }));
+    }
+  }, [inView]);
 
   return (
     <>
-      {/* 로딩일떄 스피너 보여주기 */}
-      {isLoading && true ? (
-        <Loading />
-      ) : (
-        // 로딩이 아닐떄
-        <>
-          <Header />
-          {mymodal ? <Aboutmymodal /> : null}
-          <CurriculumNav />
-          <CurriculumContainer>
-            {List?.map((item) => {
-              return <ListContainer item={item} key={item.id} />;
-            })}
-          </CurriculumContainer>
+      <Header />
+      {mymodal ? <Aboutmymodal /> : null}
+      <CurriculumNav />
+      <CurriculumContainer>
+        {data?.map((item) => {
+          return item?.data?.map((item) => {
+            return <ListContainer item={item} key={item.id} />;
+          });
+        })}
+        <div ref={ref}>
+          {infinityLoading && <Loading />}
+          <p>마지막 페이지 입니다.</p>
+        </div>
+      </CurriculumContainer>
 
-          <Footer />
-        </>
-      )}
+      <Footer />
     </>
   );
 }
@@ -74,10 +71,4 @@ const CurriculumContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 50px;
-`;
-
-const CurriculumBox = styled.ul`
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px; */
 `;

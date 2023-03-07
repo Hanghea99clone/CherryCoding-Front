@@ -9,8 +9,6 @@ const ListContainer = (item) => {
     navigate(`/detail/${id}`);
   };
 
-  // console.log(item)
-  // console.log(item.item)
   return (
     <MypageListBox>
       <MypageListArea>
@@ -44,7 +42,7 @@ const ListContainer = (item) => {
           </MypageListTextBody>
 
           <MypageListTextBtn>
-            <p>100원</p>
+            <p>{item?.item?.price}원</p>
           </MypageListTextBtn>
         </MypageListDivText>
       </MypageListArea>
