@@ -4,19 +4,31 @@ import { FaUserAlt } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MyinfoEdit from "../components/Mypage/MyinfoEdit";
-import ListContainer from "../components/ListContainer";
+import UserListContainer from "../components/UserListContainer";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { useDispatch, useSelector } from "react-redux";
 import { myModal } from "../redux/module/mymodal";
+import { __usercurriculum } from "../redux/module/usercurriculum";
 
 function Mypage() {
   const [currentTab, clickTab] = useState(0);
   const mymodal = useSelector((state) => state.mymodal);
-  const mydata = 10;
   const dispatch = useDispatch();
 
+
+  const usercurriculum = useSelector((state) => {
+    return state;
+  });
+  const MyCurriculum = usercurriculum?.usercurriculum?.usercurriculum?.data
+  console.log(MyCurriculum)
+
+
+  useEffect(() => {
+    dispatch(__usercurriculum())
+  }, [dispatch])
+
   const menuArr = [
-    { name: `강좌 ${mydata}`, content: <ListContainer /> },
+    { name: `강좌 `, content: <UserListContainer MyCurriculum={MyCurriculum} /> },
     { name: "설정", content: <MyinfoEdit /> },
   ];
 

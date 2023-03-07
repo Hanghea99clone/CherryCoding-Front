@@ -5,58 +5,77 @@ import { useNavigate } from "react-router-dom";
 
 
 
-
 // 리스트를 보여줄 컴포넌트
-const ListContainer = (item) => {
+const UserListContainer = (MyCurriculum) => {
+  console.log(MyCurriculum?.MyCurriculum)
+
   const navigate = useNavigate();
   const onClickDetailPage = (id) => {
     navigate(`/detail/${id}`);
   };
+  // const { isLoading, error, mycourse } = useSelector((state) => {
+  //     return state;
+  // });
+  // console.log(mycourse)
+  // useEffect(() => {
+  //     dispatch(__usercurriculum());
+  // }, [dispatch]);
 
+
+
+  // console.log(mycourse)
 
 
   return (
-    <MypageListBox>
-      <MypageListArea>
-        <MypageListDivImg
-          onClick={() => {
-            onClickDetailPage(item?.item?.id);
-          }}
-        >
-          <img src={item?.item?.imageUrl} />
-        </MypageListDivImg>
+    <>{
+      MyCurriculum?.MyCurriculum?.map((item) => {
+        return (
+          <MypageListBox key={item?.id}>
+            <MypageListArea>
+              <MypageListDivImg
+                onClick={() => {
+                  onClickDetailPage(item?.id);
+                }}
+              >
+                <img src={item?.imageUrl} />
+              </MypageListDivImg>
 
-        <MypageListDivText>
-          <MypageListTextTitle>
-            <a
-              onClick={() => {
-                onClickDetailPage(item?.item?.id);
-              }}
-            >
-              {item?.item?.title}
-            </a>
-          </MypageListTextTitle>
+              <MypageListDivText>
+                <MypageListTextTitle>
+                  <a
+                    onClick={() => {
+                      onClickDetailPage(item?.id);
+                    }}
+                  >
+                    {item?.title}
+                  </a>
+                </MypageListTextTitle>
 
-          <MypageListTextStar>
-            <a>
-              리뷰<MypageListTextReview>({item?.item?.reviewCnt} 리뷰)</MypageListTextReview>
-            </a>
-          </MypageListTextStar>
+                <MypageListTextStar>
+                  <a>
+                    리뷰<MypageListTextReview>({item?.reviewCnt} 리뷰)</MypageListTextReview>
+                  </a>
+                </MypageListTextStar>
 
-          <MypageListTextBody>
-            <p> {item?.item?.content}</p>
-          </MypageListTextBody>
+                <MypageListTextBody>
+                  <p> {item?.content}</p>
+                </MypageListTextBody>
 
-          <MypageListTextBtn>
-            <p>{item?.item?.price}원</p>
-          </MypageListTextBtn>
-        </MypageListDivText>
-      </MypageListArea>
-    </MypageListBox>
+                <MypageListTextBtn>
+                  <p>{item?.price}원</p>
+                </MypageListTextBtn>
+              </MypageListDivText>
+            </MypageListArea>
+          </MypageListBox>
+        )
+      })
+    }
+
+    </>
   );
 };
 
-export default ListContainer;
+export default UserListContainer;
 
 const MypageListBox = styled.div`
   padding: 10px;
