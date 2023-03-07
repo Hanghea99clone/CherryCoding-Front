@@ -6,6 +6,7 @@ export const __getCurriculumList = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const response = await axios.get("http://3.37.146.173:8080/api/lecture");
+      console.log("response", response);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       console.log("erroe", error);
