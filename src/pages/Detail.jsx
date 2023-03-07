@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 import { __postReview } from "../redux/module/addreview";
 import { __deleteReview } from "../redux/module/deletereview";
+import { __editReview } from "../redux/module/editreview";
 
 function Detail() {
   const params = useParams();
@@ -30,7 +31,6 @@ function Detail() {
 
   //리뷰 작성하는 곳
   const [titleValue, setTitleValue] = useState("");
-
   const [contentValue, setContentValue] = useState("");
 
   const newReview = {
@@ -48,15 +48,44 @@ function Detail() {
       setContentValue("");
     });
   };
-
+  //리뷰 삭제하는 곳
   const onDeleteBtnHandler = async (id) => {
     const confirmText = window.confirm("정말로 삭제하시겠습니까?");
     if (confirmText) {
       await dispatch(__deleteReview(id));
+      // console.log(__deleteReview(id));
       await dispatch(__getDetailCurriculumList(params));
     } else {
       return;
     }
+  };
+  //리뷰 수정하는 곳
+
+  const [showInput, setShowInput] = useState(false);
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
+  const [reviewId, setReviewId] = useState(null);
+
+  const handleClick = (id) => {
+    // 수정
+    setShowInput(true);
+    setReviewId(id);
+  };
+
+  const onUpdateBtnHandler = async () => {
+    const editNewreview = {
+      id: reviewId,
+      reviewTitle: editTitle,
+      reviewContent: editContent,
+    };
+
+    await dispatch(
+      __editReview(editNewreview),
+      console.log("수정된 타이틀 ---->", editNewreview)
+    );
+    alert("수정완료");
+    await dispatch(__getDetailCurriculumList(params));
+    setShowInput(false);
   };
 
   return (
@@ -123,7 +152,6 @@ function Detail() {
         <DetailMainTextBox>
           <p>홈</p>
         </DetailMainTextBox>
-
         <DetailMainTextArea>
           <p>&nbsp;</p>
           <p>
@@ -149,10 +177,30 @@ function Detail() {
             }
             return (
               <DetailReviewArea key={item.id}>
+                <h3>{item.id}</h3>
                 <h3>{item.reviewTitle}</h3>
                 <p>{item.reviewContent}</p>
                 <span>{item.nickname}</span>
-                <Button>수정</Button>
+                <div>
+                  {showInput && (
+                    <div>
+                      <input
+                        type="text"
+                        value={editTitle}
+                        onChange={(event) => setEditTitle(event.target.value)}
+                      />
+                      <textarea
+                        type="text"
+                        value={editContent}
+                        onChange={(event) => setEditContent(event.target.value)}
+                      />
+                      <Button onClick={() => onUpdateBtnHandler(item.id)}>
+                        수정완료
+                      </Button>
+                    </div>
+                  )}
+                </div>
+                <Button onClick={() => handleClick(item.id)}>수정하기</Button>
                 <Button onClick={() => onDeleteBtnHandler(item.id)}>
                   삭제
                 </Button>
