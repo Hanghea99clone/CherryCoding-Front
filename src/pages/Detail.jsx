@@ -54,18 +54,16 @@ function Detail() {
       setContentValue("");
     });
   };
-  //리뷰 삭제하는 곳
+
   const onDeleteBtnHandler = async (id) => {
     const confirmText = window.confirm("정말로 삭제하시겠습니까?");
     if (confirmText) {
       await dispatch(__deleteReview(id));
-      // console.log(__deleteReview(id));
       await dispatch(__getDetailCurriculumList(params));
     } else {
       return;
     }
   };
-  //리뷰 수정하는 곳
 
   const [showInput, setShowInput] = useState(false);
   const [editTitle, setEditTitle] = useState("");
@@ -73,7 +71,6 @@ function Detail() {
   const [reviewId, setReviewId] = useState(null);
 
   const handleClick = (id) => {
-    // 수정
     setShowInput(true);
     setReviewId(id);
   };
@@ -99,7 +96,6 @@ function Detail() {
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
       <DetailContainer>
-        {/* 상세페이지 설명글  */}
         <DetailNavListBox>
           <h6>
             {" "}
@@ -174,14 +170,10 @@ function Detail() {
           </p>
         </DetailMainTextArea>
 
-        {/* 강좌에대한 리뷰가 들어가는 곳입니다!  */}
         <DetailReviewBox>
           <h2>{List?.title}의 강좌 리뷰</h2>
 
           {ListReview?.map((item) => {
-            {
-              /* console.log(item); */
-            }
             return (
               <DetailReviewArea key={item.id}>
                 <h3>{item.id}</h3>

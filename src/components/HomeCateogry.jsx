@@ -6,7 +6,6 @@ import {
   HomeTextGrid,
   HomeContentGridImg,
 } from "../style/Home";
-import DataBase from "../asset/DataBase.png";
 
 function HomeCateogry({ content, imageUrl, title }) {
   return (

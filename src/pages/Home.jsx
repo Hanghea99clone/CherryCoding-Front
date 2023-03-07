@@ -105,8 +105,6 @@ function Home() {
       </HomeGideBox>
       <HomeImageBox>
         <HomeGridArea>
-          {/* 그리드 시작 */}
-
           {List?.map((item) => {
             return (
               <Link key={item.id} to={`/detail/${item.id}`}>
@@ -118,7 +116,6 @@ function Home() {
               </Link>
             );
           })}
-          {/* 그리드 끝 */}
         </HomeGridArea>
       </HomeImageBox>
       <HomeMiddleTextBox>
