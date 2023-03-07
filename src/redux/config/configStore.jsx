@@ -10,6 +10,9 @@ import myModal from "../module/mymodal";
 import deleteReview from "../module/deletereview";
 import getInfinitiScroll from "../module/infinitiscroll";
 import editReview from "../module/editreview";
+import undateMyinfo from '../module/updateuserinfo';
+import postregistercourse from "../module/postregistercourse";
+import usercurriculum from "../module/usercurriculum";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +27,9 @@ const store = configureStore({
     deletereview: deleteReview.reducer,
     infinite: getInfinitiScroll.reducer,
     putreview: editReview,
+    undateMyinfo: undateMyinfo.reducer,
+    postregistercourse: postregistercourse.reducer,
+    usercurriculum: usercurriculum.reducer
   },
 });
 

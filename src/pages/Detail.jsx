@@ -12,6 +12,7 @@ import { __deleteReview } from "../redux/module/deletereview";
 import { myModal } from "../redux/module/mymodal";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { __editReview } from "../redux/module/editreview";
+import { __postregistercourse } from "../redux/module/postregistercourse";
 
 function Detail() {
   const params = useParams();
@@ -30,10 +31,23 @@ function Detail() {
     return state;
   });
 
-  const List = getDetailCurriculumList.data.data;
+
+  const List = getDetailCurriculumList?.data?.data;
+
+  const data = {
+    id: params.id,
+  }
+
+  const registercourse = () => {
+    console.log('야호! ')
+    dispatch(__postregistercourse(data))
+  }
+
 
   const ListReview = List?.reviewList;
   // reviewContent
+
+
 
   //리뷰 작성하는 곳
   const [titleValue, setTitleValue] = useState("");
@@ -120,6 +134,7 @@ function Detail() {
             <DetailTextArea2>
               {List?.isEnrolled == false ? (
                 <Button
+                  onClick={registercourse}
                   style={{
                     width: "220px",
                     height: "80px",
@@ -127,10 +142,11 @@ function Detail() {
                     color: "#fff",
                   }}
                 >
-                  수강 계속하기
+                  수강 신청하기🔥
                 </Button>
               ) : (
                 <Button
+                  onClick={registercourse}
                   style={{
                     width: "220px",
                     height: "80px",
@@ -138,12 +154,17 @@ function Detail() {
                     color: "#fff",
                   }}
                 >
-                  수강 신청하기
+                  수강 계속하기🧑🏻‍💻
                 </Button>
               )}
 
               <ul>
-                <li>수강중</li>
+
+                {
+                  List?.isEnrolled == false ? <li>수강신청해보세요!  </li> : <li>수강중!  </li>
+
+                }
+
                 <li>강의 남은기간</li>
               </ul>
             </DetailTextArea2>
