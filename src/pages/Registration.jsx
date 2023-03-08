@@ -10,6 +10,7 @@ import { __postLecture } from "../redux/module/registration";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
 import { __getCurriculumList } from "../redux/module/getcurriculum";
+import codingcherrylogo from "../asset/codingcherrylogo.png";
 
 function Registration() {
   const [formImagin, setFormformImagin] = useState(new FormData());
@@ -67,14 +68,18 @@ function Registration() {
   return (
     <SignupContainer>
       <Header />
+
       {mymodal ? <Aboutmymodal /> : null}
       <RegistrationTitle>게시물 등록</RegistrationTitle>
       <SignupBox>
+        <div>
+          <img src={codingcherrylogo} />
+        </div>
         {preview && (
           <img
             style={{
-              width: "200px",
-              height: "200px",
+              width: "20px",
+              height: "20px",
               borderRadius: "20px",
               marginBottom: "40px",
             }}
@@ -82,6 +87,7 @@ function Registration() {
             alt="Preview"
           />
         )}
+
         <SignupForm onSubmit={handleSubmit(onValid)}>
           <RegiinputFile
             as={"input"}
@@ -101,7 +107,7 @@ function Registration() {
           <span>{errors?.title?.message}</span>
           <div>
             <Regiinput
-              type="text"
+              type="number"
               {...register("price", {
                 required: "가격을 입력해주세요.",
                 pattern: {
@@ -131,6 +137,7 @@ function Registration() {
           <SignupBtn signupMdBtn>게시물 등록</SignupBtn>
         </SignupForm>
       </SignupBox>
+
       <Footer />
     </SignupContainer>
   );
@@ -142,12 +149,15 @@ const SignupContainer = styled.div`
 `;
 
 const SignupBox = styled.div`
-  //border: 1px solid black;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  border: 1px solid red;
+  border-radius: 10px;
 `;
 
 const SignupForm = styled.form`
@@ -169,11 +179,12 @@ const Regiinput = styled.input`
   outline: none;
   border: 1px solid black;
   margin-bottom: 20px;
+  padding-left: 1.25rem;
 `;
 
 const RegiTextarea = styled(Regiinput)`
-  width: 400px;
-  height: 300px;
+  width: 25rem;
+  height: 18.75rem;
   margin-top: 10px;
   padding-left: 12px;
   border: none;
@@ -184,6 +195,7 @@ const RegiTextarea = styled(Regiinput)`
   border: 1px solid black;
   margin-bottom: 20px;
   resize: none;
+  padding: 1.25rem;
 `;
 
 const RegistrationTitle = styled.h2`
