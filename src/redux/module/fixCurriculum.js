@@ -26,8 +26,8 @@ export const __fixCurriculum = createAsyncThunk(
     } catch (e) {
       alert(
         e.response.status === 400
-          ? "수정에 실패했습니다. 다시 시도해주세요."
-          : "문제가 생겼습니다."
+          ? "수정 실패했습니다."
+          : "수정에 문제가 생겼습니다."
       );
     }
   }
@@ -50,7 +50,7 @@ const fixCurriculum = createSlice({
     });
     builder.addCase(__fixCurriculum.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.user = action.payload;
+      state.lecture = action.payload;
       state.error = null;
     });
     builder.addCase(__fixCurriculum.rejected, (state, action) => {

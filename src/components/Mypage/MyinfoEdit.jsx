@@ -12,14 +12,11 @@ function MyinfoEdit() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const uasrId = JSON.parse(localStorage.getItem("userInfo"));
-  // console.log(uasrId)
-  const Token = Cookies.remove("a");
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
   } = useForm();
 
   function onSubmitvalue(data) {
@@ -58,10 +55,6 @@ function MyinfoEdit() {
                   message:
                     "영어 소문자와 숫자, 특수문자 조합의 8-20자로 입력해주세요.",
                 },
-                // maxLength: {
-                //   value: 10,
-                //   message: "10글자 이하이어야 합니다.",
-                // },
               })}
               type="password"
             />
@@ -73,11 +66,7 @@ function MyinfoEdit() {
           <span>{errors?.password?.message}</span>
 
           <MypageMyinfoEditInputArea>
-            <input
-              defaultValue={uasrId.userName}
-              // 수정해야될 부분
-              type="text"
-            />
+            <input defaultValue={uasrId.userName} type="text" />
             <label>현재 이메일</label>
             <div>
               <FaLock />

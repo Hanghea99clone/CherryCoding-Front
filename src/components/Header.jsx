@@ -40,7 +40,9 @@ function Header() {
           </Link>
         </div>
         <HeaderAreaSpan>
-          <span>HOME</span>
+          <Link to={"/"}>
+            <span>HOME</span>
+          </Link>
           <Link to={"/curriculum"}>
             <span>CURRICULUM</span>
           </Link>

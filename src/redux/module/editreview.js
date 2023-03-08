@@ -17,9 +17,9 @@ export const __editReview = createAsyncThunk(
           },
         }
       );
-      console.log(response);
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (e) {
-      console.log(e);
+      return thunkAPI.rejectWithValue(e);
     }
   }
 );

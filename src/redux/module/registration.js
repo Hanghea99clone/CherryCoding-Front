@@ -18,9 +18,17 @@ export const __postLecture = createAsyncThunk(
           },
         }
       );
-      console.log(response);
+      alert(
+        response?.data.statusCode === 200
+          ? "등록 성공하였습니다."
+          : "등록에 문제가 생겼습니다."
+      );
     } catch (e) {
-      console.log(e);
+      alert(
+        e.response.status === 400
+          ? "등록 할 수가 없습니다"
+          : "문제가 생겼습니다."
+      );
     }
   }
 );

@@ -19,8 +19,6 @@ function Signup() {
 
   const modal = useSelector((state) => state.modal);
   const siginup = useSelector((state) => state);
-  console.log(siginup);
-  //const signup = useSelector((state) => console.log(state));
   const [isCheckAll, setIsCheckAll] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();

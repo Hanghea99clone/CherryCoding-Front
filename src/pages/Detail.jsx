@@ -13,9 +13,10 @@ import Aboutmymodal from "../components/Aboutmymodal";
 import { __editReview } from "../redux/module/editreview";
 import { __postregistercourse } from "../redux/module/postregistercourse";
 import { __deleteCurriculum } from "../redux/module/deleteCurriculum";
+import { __getCurriculumList } from "../redux/module/getcurriculum";
 import { MdRateReview } from "react-icons/md";
-import { FaUserCircle } from 'react-icons/fa'
-import { AiFillDelete } from 'react-icons/ai'
+import { FaUserCircle } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
 
 function Detail() {
   const params = useParams();
@@ -68,8 +69,8 @@ function Detail() {
   const onDeleteBtnHandler = async (id) => {
     const confirmText = window.confirm("정말로 삭제하시겠습니까?");
     if (confirmText) {
-      dispatch(__deleteReview(id));
-      dispatch(__getDetailCurriculumList(params));
+      await dispatch(__deleteReview(id));
+      await dispatch(__getDetailCurriculumList(params));
     } else {
       return;
     }
@@ -79,11 +80,6 @@ function Detail() {
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
   const [reviewId, setReviewId] = useState(null);
-
-  const handleClick = (id) => {
-    setShowInput(true);
-    setReviewId(id);
-  };
 
   const onUpdateBtnHandler = async () => {
     const editNewreview = {
@@ -100,9 +96,11 @@ function Detail() {
 
   function deleteCurriculum() {
     dispatch(__deleteCurriculum(params.id));
+    dispatch(__getCurriculumList());
+    navigate("/");
   }
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
-  const isAdmin = userInfo.isAdmin
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const isAdmin = userInfo.isAdmin;
 
   return (
     <div>
@@ -110,19 +108,22 @@ function Detail() {
       {mymodal ? <Aboutmymodal /> : null}
 
       <DetailContainer>
-        {
-          isAdmin === 'true' ? (
-            <DetailUnpateBox>
-              <button
-                style={{ background: "#748ffc" }}
-                onClick={() => navigate(`/fixcurriculum/${data.id}`)}>
-                수정하기
-              </button>
-              <button
-                style={{ background: "#ff5554" }}
-                onClick={deleteCurriculum}>강좌 삭제하기</button></DetailUnpateBox>
-          ) : null
-        }
+        {isAdmin === "true" ? (
+          <DetailUnpateBox>
+            <button
+              style={{ background: "#748ffc" }}
+              onClick={() => navigate(`/fixcurriculum/${data.id}`)}
+            >
+              수정하기
+            </button>
+            <button
+              style={{ background: "#ff5554" }}
+              onClick={deleteCurriculum}
+            >
+              강좌 삭제하기
+            </button>
+          </DetailUnpateBox>
+        ) : null}
         <DetailNavListBox>
           <h6>
             홈 / 강좌 / WEB / ({List?.price}원) {List?.title}
@@ -148,7 +149,7 @@ function Detail() {
                     height: "80px",
                     backgroundColor: "#ff5554",
                     color: "#fff",
-                    borderRadius: "0.625rem"
+                    borderRadius: "0.625rem",
                   }}
                 >
                   수강 신청하기🔥
@@ -161,7 +162,7 @@ function Detail() {
                     height: "80px",
                     backgroundColor: "#ff5554",
                     color: "#fff",
-                    borderRadius: "0.625rem"
+                    borderRadius: "0.625rem",
                   }}
                 >
                   수강 계속하기🧑🏻‍💻
@@ -172,10 +173,10 @@ function Detail() {
                 {List?.isEnrolled == false ? (
                   <li>수강신청해보세요! </li>
                 ) : (
-                  <li >수강중! </li>
+                  <li>수강중! </li>
                 )}
 
-                <li style={{ marginTop: "1rem", }}>{List?.price}원</li>
+                <li style={{ marginTop: "1rem" }}>{List?.price}원</li>
               </ul>
             </DetailTextArea2>
 
@@ -192,9 +193,7 @@ function Detail() {
         </DetailMainTextBox>
         <DetailMainTextArea>
           <p>&nbsp;</p>
-          <p>
-            {List?.content}
-          </p>
+          <p>{List?.content}</p>
         </DetailMainTextArea>
 
         <DetailReviewBox>
@@ -204,13 +203,13 @@ function Detail() {
             return (
               <DetailReviewArea key={item.id}>
                 <DetailRevieImageArea>
-
-                  <div><FaUserCircle /></div>
+                  <div>
+                    <FaUserCircle />
+                  </div>
                   <h4>닉네임:{item.nickname}</h4>
                 </DetailRevieImageArea>
 
                 <DetailRevieTextArea>
-
                   <DetailRevieTextTitleArea>
                     <h3>{item.reviewTitle}</h3>
                   </DetailRevieTextTitleArea>
@@ -220,12 +219,11 @@ function Detail() {
                   </DetailRevieTextContenteArea>
 
                   <DetailRevieTextButtonArea>
-
                     <p>{item.modifiedAt.slice(0, 10)}</p>
-                    <button onClick={() => onDeleteBtnHandler(item.id)}><AiFillDelete /></button>
-
+                    <button onClick={() => onDeleteBtnHandler(item.id)}>
+                      <AiFillDelete />
+                    </button>
                   </DetailRevieTextButtonArea>
-
                 </DetailRevieTextArea>
               </DetailReviewArea>
             );
@@ -233,7 +231,10 @@ function Detail() {
         </DetailReviewBox>
 
         <DetailRevieMake onSubmit={onCreate}>
-          <label htmlFor="text"> 리뷰 작성 <MdRateReview />   </label>
+          <label htmlFor="text">
+            {" "}
+            리뷰 작성 <MdRateReview />{" "}
+          </label>
 
           <input
             id="text"
@@ -241,7 +242,8 @@ function Detail() {
             value={titleValue}
             placeholder="리뷰 제목을 작성해주세요"
             onChange={(event) => setTitleValue(event.target.value)}
-            required />
+            required
+          />
 
           <textarea
             id="text"
@@ -249,14 +251,14 @@ function Detail() {
             value={contentValue}
             placeholder="리뷰를 작성해주세요"
             onChange={(event) => setContentValue(event.target.value)}
-            required />
+            required
+          />
 
           <button type="submit">리뷰 등록</button>
-
         </DetailRevieMake>
       </DetailContainer>
       <Footer />
-    </div >
+    </div>
   );
 }
 
@@ -271,22 +273,20 @@ const DetailUnpateBox = styled.div`
   width: 50%;
   height: 3rem;
   margin: 0 auto;
-  display: flex;;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 0 20px;
   > button {
     width: 7.5rem;
     height: 1.875rem;
-    border-radius: .4375rem;
+    border-radius: 0.4375rem;
     border: none;
     outline: none;
     color: #fff;
     cursor: pointer;
-    }
-`
-
-
+  }
+`;
 
 const DetailNavListBox = styled.div`
   width: 90%;
@@ -345,10 +345,10 @@ const DetailTextArea2 = styled.div`
   padding-top: 1.25rem;
   ${(props) => props.theme.FelexCenter};
   flex-direction: column;
-  background: #Fafafa;;
+  background: #fafafa;
   gap: 3.75rem 0;
   > ul {
-    padding: 1.25rem; 
+    padding: 1.25rem;
     text-align: center;
   }
 `;
@@ -363,8 +363,8 @@ const DetailMainTextBox = styled.div`
   align-items: center;
   margin-left: 70px;
   > p {
-    color: #FF4949;
-    padding: .75rem .625rem;
+    color: #ff4949;
+    padding: 0.75rem 0.625rem;
   }
 `;
 
@@ -390,7 +390,7 @@ const DetailReviewArea = styled.div`
   height: 12.5rem;
   margin-left: 1.25rem;
   display: flex;
-  padding: .625rem;
+  padding: 0.625rem;
   border-top: 1px solid #000;
   margin-top: 1.25rem;
 `;
@@ -410,13 +410,12 @@ const DetailRevieImageArea = styled.div`
     height: 20%;
     margin-top: 1.25rem;
   }
-  h4{
+  h4 {
     width: 100%;
     margin-top: 1.25rem;
     text-align: center;
-    font-size: .9375rem;
+    font-size: 0.9375rem;
   }
-
 `;
 
 const DetailRevieTextArea = styled.div`
@@ -441,7 +440,7 @@ const DetailRevieTextContenteArea = styled.div`
   width: 90%;
   height: 60%;
   display: flex;
-  padding-top: .625rem; 
+  padding-top: 0.625rem;
   padding-left: 1rem;
 `;
 
@@ -456,8 +455,7 @@ const DetailRevieTextButtonArea = styled.div`
   > button {
     width: 20%;
   }
-`
-
+`;
 
 const DetailRevieMake = styled.form`
   width: 60%;

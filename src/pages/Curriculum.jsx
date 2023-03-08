@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
 import ListContainer from "../components/ListContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { Loading } from "../components/Loading";
@@ -13,9 +12,12 @@ import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
 
 function Curriculum() {
   const page = useRef(1);
-  const [ref, inView] = useInView();
+  let pageData = useRef({});
+  let [ref, inView] = useInView();
   const dispatch = useDispatch();
   const mymodal = useSelector((state) => state.mymodal);
+  //console.log(pageData?.current[0].data?.length);
+  //console.log(page);
 
   const {
     data,
@@ -23,16 +25,20 @@ function Curriculum() {
     error: isEror,
   } = useSelector((state) => state.infinite);
 
+  // const currentId = data[0]?.data[data[0]?.data?.length - 1]?.id;
+  // console.log(currentId);
+
+  // console.log(inView && currentId !== pageData);
+  // pageData = currentId;
+
   useEffect(() => {
     dispatch(__getInfinitiScroll({ page: page.current }));
     dispatch(myModal(false));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
-    if (inView) {
-      page.current += 1;
-      dispatch(__getInfinitiScroll({ page: page.current }));
-    }
+    page.current += 1;
+    dispatch(__getInfinitiScroll({ page: page.current }));
   }, [inView]);
 
   return (

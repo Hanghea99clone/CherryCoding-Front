@@ -2,33 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-// 리스트를 보여줄 컴포넌트
 const UserListContainer = (MyCurriculum) => {
-  console.log(MyCurriculum?.MyCurriculum)
-
   const navigate = useNavigate();
   const onClickDetailPage = (id) => {
     navigate(`/detail/${id}`);
   };
-  // const { isLoading, error, mycourse } = useSelector((state) => {
-  //     return state;
-  // });
-  // console.log(mycourse)
-  // useEffect(() => {
-  //     dispatch(__usercurriculum());
-  // }, [dispatch]);
-
-
-
-  // console.log(mycourse)
-
 
   return (
-    <>{
-      MyCurriculum?.MyCurriculum?.map((item) => {
+    <>
+      {MyCurriculum?.MyCurriculum?.map((item) => {
         return (
           <MypageListBox key={item?.id}>
             <MypageListArea>
@@ -53,7 +35,10 @@ const UserListContainer = (MyCurriculum) => {
 
                 <MypageListTextStar>
                   <a>
-                    리뷰<MypageListTextReview>({item?.reviewCnt} 리뷰)</MypageListTextReview>
+                    리뷰
+                    <MypageListTextReview>
+                      ({item?.reviewCnt} 리뷰)
+                    </MypageListTextReview>
                   </a>
                 </MypageListTextStar>
 
@@ -67,10 +52,8 @@ const UserListContainer = (MyCurriculum) => {
               </MypageListDivText>
             </MypageListArea>
           </MypageListBox>
-        )
-      })
-    }
-
+        );
+      })}
     </>
   );
 };
