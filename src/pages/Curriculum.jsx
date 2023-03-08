@@ -8,15 +8,16 @@ import { Loading } from "../components/Loading";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
 import { useInView } from "react-intersection-observer";
-import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
+import {
+  __getInfinitiScroll,
+  initInfinitiScroll,
+} from "../redux/module/infinitiscroll";
 
 function Curriculum() {
   const page = useRef(1);
   const [ref, inView] = useInView();
   const dispatch = useDispatch();
   const mymodal = useSelector((state) => state.mymodal);
-  //console.log(pageData?.current[0].data?.length);
-  //console.log(page);
 
   const {
     data,
@@ -25,16 +26,17 @@ function Curriculum() {
   } = useSelector((state) => state.infinite);
 
   useEffect(() => {
+    dispatch(initInfinitiScroll());
     dispatch(__getInfinitiScroll({ page: page.current }));
     dispatch(myModal(false));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (inView) {
       page.current += 1;
       dispatch(__getInfinitiScroll({ page: page.current }));
     }
-  }, [inView, dispatch]);
+  }, [inView]);
 
   return (
     <>

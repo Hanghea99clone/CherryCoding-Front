@@ -32,7 +32,13 @@ const initialState = {
 export const getInfinitiScroll = createSlice({
   name: "getInfinitiScroll",
   initialState,
-  reducers: {},
+  reducers: {
+    initInfinitiScroll: (state, action) => {
+      state.isLoading = false;
+      state.error = false;
+      state.data = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(__getInfinitiScroll.pending, (state) => {
       state.isLoading = true;
@@ -50,4 +56,5 @@ export const getInfinitiScroll = createSlice({
   },
 });
 
+export const { initInfinitiScroll } = getInfinitiScroll.actions;
 export default getInfinitiScroll;
