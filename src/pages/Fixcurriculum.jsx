@@ -13,6 +13,7 @@ import { myModal } from "../redux/module/mymodal";
 import { useParams } from "react-router-dom";
 import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
+import codingcherrylogo from "../asset/codingcherrylogo.png";
 
 function Fixcurriculum() {
   const [formImagin, setFormformImagin] = useState(new FormData());
@@ -77,9 +78,10 @@ function Fixcurriculum() {
     <SignupContainer>
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
-      <RegistrationTitle>게시물 수정</RegistrationTitle>
+
       <SignupBox>
-        {preview && (
+        <BoxLogoArea><img src={codingcherrylogo} /> <p style={{ fontSize: "1rem" }}>강의 수정 !</p></BoxLogoArea>
+        {/* {preview && (
           <img
             style={{
               width: "200px",
@@ -90,14 +92,31 @@ function Fixcurriculum() {
             src={preview}
             alt="Preview"
           />
-        )}
+        )} */}
         <SignupForm onSubmit={handleSubmit(onValid)}>
-          <RegiinputFile
-            as={"input"}
-            type="file"
-            accept="image/*"
-            onChange={onChangeimge}
-          />
+          <FormImgArea>
+            {preview && (
+              <div>
+                <img
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  src={preview}
+                  alt="Preview"
+                />
+              </div>
+            )}
+            <div>
+              <RegiinputFile
+                as={"input"}
+                type="file"
+                accept="image/*"
+                onChange={onChangeimge}
+              />
+            </div>
+          </FormImgArea>
+
           <div>
             <Regiinput
               type="text"
@@ -144,59 +163,88 @@ function Fixcurriculum() {
     </SignupContainer>
   );
 }
-
 const SignupContainer = styled.div`
   //border: 1px solid red;
   height: 100vh;
 `;
 
 const SignupBox = styled.div`
-  //border: 1px solid black;
-  height: 100%;
+  width: 60%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  background: #f1f3f5;
+  border-radius: .9375rem;
+`;
+
+const BoxLogoArea = styled.div`
+  width: 100%;
+  height: 4.375rem;
+  display: flex;
+  align-items: center;
+  > img {
+    padding-left: 3.125rem;
+    width: 20%;
+  }
 `;
 
 const SignupForm = styled.form`
-  //border: 1px solid black;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const RegistrationTitle = styled.h2`
-  margin-left: 50px;
-`;
+const FormImgArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem 2.5rem;
+  > div {
+    width: 50%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .625rem;
+  }
+`
 
 const Regiinput = styled.input`
-  height: 39px;
-  margin-top: 10px;
-  padding-left: 12px;
+  height: 1.875rem;
+  margin-top: .625rem;
+  padding-left: .75rem;
   border: none;
-  border-radius: 4px;
-  font-size: 19px;
+  border-radius: .25rem;
+  font-size: 1.2rem;
   font-weight: bold;
   outline: none;
   border: 1px solid black;
-  margin-bottom: 20px;
+  margin-top: 1.25rem;
 `;
 
 const RegiTextarea = styled(Regiinput)`
-  width: 400px;
-  height: 300px;
-  margin-top: 10px;
-  padding-left: 12px;
+  width: 25rem;
+  height: 15.625rem;
+  margin-top: .625rem;
   border: none;
-  border-radius: 4px;
-  font-size: 19px;
+  border-radius: 0.25rem;
+  font-size: 1.1875rem;
   font-weight: bold;
   outline: none;
   border: 1px solid black;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   resize: none;
+  padding: 1.25rem;
+  
+`;
+
+const RegistrationTitle = styled.h2`
+  margin-left: 3.125rem;
 `;
 
 const RegiinputFile = styled(Regiinput)`
