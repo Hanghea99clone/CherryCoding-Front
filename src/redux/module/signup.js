@@ -9,7 +9,6 @@ export const __postRegister = createAsyncThunk(
         "http://3.37.146.173:8080/api/user/signup",
         datas
       );
-      console.log(response?.data.statusCode);
       alert(
         response?.data.statusCode === 200
           ? "회원가입 성공"

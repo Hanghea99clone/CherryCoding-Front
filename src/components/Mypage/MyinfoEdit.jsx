@@ -10,10 +10,10 @@ import Cookies from "js-cookie";
 
 function MyinfoEdit() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const uasrId = JSON.parse(localStorage.getItem('userInfo'))
+  const navigate = useNavigate();
+  const uasrId = JSON.parse(localStorage.getItem("userInfo"));
   // console.log(uasrId)
-  const Token = Cookies.remove('a')
+  const Token = Cookies.remove("a");
   const {
     register,
     handleSubmit,
@@ -25,25 +25,23 @@ function MyinfoEdit() {
   function onSubmitvalue(data) {
     const editmyinfo = {
       password: data.password,
-      newPw: data.newCheckpassword
+      newPw: data.newCheckpassword,
     };
     if (data.newpassword === data.newCheckpassword) {
       const confirmText = window.confirm("정말로 바꾸시겠습니까?");
       if (confirmText) {
-        dispatch(__undateMyinfo(editmyinfo))
+        dispatch(__undateMyinfo(editmyinfo));
         reset();
-        Cookies.remove('access_token')
+        Cookies.remove("access_token");
         localStorage.removeItem("userInfo");
-        navigate('/')
+        navigate("/");
       } else {
-        return
+        return;
       }
-    }
-    else {
-      alert('새로운 비밀번호 불일치 ! ')
+    } else {
+      alert("새로운 비밀번호 불일치 ! ");
       reset();
     }
-
   }
 
   return (
@@ -56,8 +54,7 @@ function MyinfoEdit() {
               {...register("password", {
                 required: "비밀번호를 꼭 입력해주세요.",
                 pattern: {
-                  value:
-                    /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{8,20}$/,
+                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{8,20}$/,
                   message:
                     "영어 소문자와 숫자, 특수문자 조합의 8-20자로 입력해주세요.",
                 },
@@ -75,33 +72,30 @@ function MyinfoEdit() {
           </MypageMyinfoEditInputArea>
           <span>{errors?.password?.message}</span>
 
-
-
-
-
           <MypageMyinfoEditInputArea>
             <input
-              value={uasrId.userName}
-              type="text" />
+              defaultValue={uasrId.userName}
+              // 수정해야될 부분
+              type="text"
+            />
             <label>현재 이메일</label>
             <div>
               <FaLock />
             </div>
           </MypageMyinfoEditInputArea>
 
-
-
           <MypageMyinfoEditInputArea>
-            <input {...register("newpassword", {
-              required: "비밀번호를 꼭 입력해주세요.",
-              pattern: {
-                value:
-                  /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{8,20}$/,
-                message:
-                  "영어 소문자와 숫자, 특수문자 조합의 8-20자로 입력해주세요.",
-              },
-            })}
-              type="password" />
+            <input
+              {...register("newpassword", {
+                required: "비밀번호를 꼭 입력해주세요.",
+                pattern: {
+                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{8,20}$/,
+                  message:
+                    "영어 소문자와 숫자, 특수문자 조합의 8-20자로 입력해주세요.",
+                },
+              })}
+              type="password"
+            />
             <label>새 비밀번호</label>
             <div>
               <FaLock />
@@ -109,21 +103,18 @@ function MyinfoEdit() {
           </MypageMyinfoEditInputArea>
           <span>{errors?.newpassword?.message}</span>
 
-
-
-
-
           <MypageMyinfoEditInputArea>
-            <input {...register("newCheckpassword", {
-              required: "비밀번호를 꼭 입력해주세요.",
-              pattern: {
-                value:
-                  /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{8,20}$/,
-                message:
-                  "영어 소문자와 숫자, 특수문자 조합의 8-20자로 입력해주세요.",
-              },
-            })}
-              type="password" />
+            <input
+              {...register("newCheckpassword", {
+                required: "비밀번호를 꼭 입력해주세요.",
+                pattern: {
+                  value: /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{8,20}$/,
+                  message:
+                    "영어 소문자와 숫자, 특수문자 조합의 8-20자로 입력해주세요.",
+                },
+              })}
+              type="password"
+            />
             <label>새 비밀번호 재입력</label>
             <div>
               <FaLock />

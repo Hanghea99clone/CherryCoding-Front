@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import ListContainer from "../components/ListContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { __getCurriculumList } from "../redux/module/getcurriculum";
 import { Loading } from "../components/Loading";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";

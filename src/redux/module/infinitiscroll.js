@@ -13,6 +13,7 @@ export const __getInfinitiScroll = createAsyncThunk(
         {
           headers: {
             Authorization: token,
+            "cache-control": "no-cache",
           },
         }
       );

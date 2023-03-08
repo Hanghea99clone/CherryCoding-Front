@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 // import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 import { __postReview } from "../redux/module/addreview";
@@ -13,11 +13,13 @@ import { myModal } from "../redux/module/mymodal";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { __editReview } from "../redux/module/editreview";
 import { __postregistercourse } from "../redux/module/postregistercourse";
+import { __deleteCurriculum } from "../redux/module/deleteCurriculum";
 
 function Detail() {
   const params = useParams();
   const mymodal = useSelector((state) => state.mymodal);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(__getDetailCurriculumList(params));
@@ -31,23 +33,18 @@ function Detail() {
     return state;
   });
 
-
   const List = getDetailCurriculumList?.data?.data;
 
   const data = {
     id: params.id,
-  }
+  };
 
   const registercourse = () => {
-    console.log('야호! ')
-    dispatch(__postregistercourse(data))
-  }
-
+    dispatch(__postregistercourse(data));
+  };
 
   const ListReview = List?.reviewList;
   // reviewContent
-
-
 
   //리뷰 작성하는 곳
   const [titleValue, setTitleValue] = useState("");
@@ -61,7 +58,6 @@ function Detail() {
 
   const onCreate = (e) => {
     e.preventDefault();
-    console.log(newReview);
     dispatch(__postReview(newReview)).then(() => {
       dispatch(__getDetailCurriculumList(params));
       setTitleValue("");
@@ -72,8 +68,8 @@ function Detail() {
   const onDeleteBtnHandler = async (id) => {
     const confirmText = window.confirm("정말로 삭제하시겠습니까?");
     if (confirmText) {
-      await dispatch(__deleteReview(id));
-      await dispatch(__getDetailCurriculumList(params));
+      dispatch(__deleteReview(id));
+      dispatch(__getDetailCurriculumList(params));
     } else {
       return;
     }
@@ -96,20 +92,25 @@ function Detail() {
       reviewContent: editContent,
     };
 
-    await dispatch(
-      __editReview(editNewreview),
-      console.log("수정된 타이틀 ---->", editNewreview)
-    );
+    dispatch(__editReview(editNewreview));
     alert("수정완료");
-    await dispatch(__getDetailCurriculumList(params));
+    dispatch(__getDetailCurriculumList(params));
     setShowInput(false);
   };
+
+  function deleteCurriculum() {
+    dispatch(__deleteCurriculum(params.id));
+  }
 
   return (
     <div>
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
       <DetailContainer>
+        <button onClick={() => navigate(`/fixcurriculum/${data.id}`)}>
+          수정하기
+        </button>
+        <button onClick={deleteCurriculum}>강좌 삭제하기</button>
         <DetailNavListBox>
           <h6>
             {" "}
@@ -155,11 +156,11 @@ function Detail() {
               )}
 
               <ul>
-
-                {
-                  List?.isEnrolled == false ? <li>수강신청해보세요!  </li> : <li>수강중!  </li>
-
-                }
+                {List?.isEnrolled == false ? (
+                  <li>수강신청해보세요! </li>
+                ) : (
+                  <li>수강중! </li>
+                )}
 
                 <li>강의 남은기간</li>
               </ul>
@@ -391,6 +392,6 @@ const DetailRevieMake = styled.form`
   > textarea {
     width: 25rem;
     height: 3.75rem;
-    padding: 20px;
+    padding: 1.25rem;
   }
 `;

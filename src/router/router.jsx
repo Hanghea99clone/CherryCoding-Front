@@ -6,6 +6,7 @@ import Mypage from "../pages/Mypage";
 import Notfound from "../pages/Notfound";
 import Signup from "../pages/Signup";
 import Registration from "../pages/Registration";
+import Fixcurriculum from "../pages/Fixcurriculum";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/*" element={<Notfound />} />
         <Route path="/" element={<Home />} />
+        <Route path="/fixcurriculum/:id" element={<Fixcurriculum />} />
         <Route path="/curriculum" element={<Curriculum />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/mypage" element={<Mypage />} />
