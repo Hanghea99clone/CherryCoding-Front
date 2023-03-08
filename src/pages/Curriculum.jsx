@@ -25,11 +25,10 @@ function Curriculum() {
     error: isEror,
   } = useSelector((state) => state.infinite);
 
-  // const currentId = data[0]?.data[data[0]?.data?.length - 1]?.id;
-  // console.log(currentId);
+  const currentId = data[0]?.data[data[0]?.data?.length - 1]?.id;
 
-  // console.log(inView && currentId !== pageData);
-  // pageData = currentId;
+  pageData = currentId;
+  //console.log(inView && currentId !== pageData);
 
   useEffect(() => {
     dispatch(__getInfinitiScroll({ page: page.current }));
@@ -37,8 +36,10 @@ function Curriculum() {
   }, []);
 
   useEffect(() => {
-    page.current += 1;
-    dispatch(__getInfinitiScroll({ page: page.current }));
+    if (inView) {
+      page.current += 1;
+      dispatch(__getInfinitiScroll({ page: page.current }));
+    }
   }, [inView]);
 
   return (
