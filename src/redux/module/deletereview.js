@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 
 const token = Cookies.get("access_token");
 
@@ -8,14 +8,11 @@ export const __deleteReview = createAsyncThunk(
   "deleteReview",
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(
-        `http://3.37.146.173:8080/api/review/${id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const response = await acuxios.delete(`api/review/${id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
       return thunkAPI.fulfillWithValue(response.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);

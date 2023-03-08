@@ -1,14 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 
 export const __postRegister = createAsyncThunk(
   "register",
   async (datas, thunkAPI) => {
     try {
-      const response = await axios.post(
-        "http://3.37.146.173:8080/api/user/signup",
-        datas
-      );
+      const response = await acuxios.post("api/user/signup", datas);
       alert(
         response?.data.statusCode === 200
           ? "회원가입 성공"

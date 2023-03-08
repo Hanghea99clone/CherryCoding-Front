@@ -8,7 +8,6 @@ import Signup from "../pages/Signup";
 import Registration from "../pages/Registration";
 import Fixcurriculum from "../pages/Fixcurriculum";
 import Checkout from "../components/Checkout";
-import { SuccessPage } from "../components/Success";
 
 function App() {
   return (
@@ -17,7 +16,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/fixcurriculum/:id" element={<Fixcurriculum />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/success" element={<SuccessPage />} />
         <Route path="/curriculum" element={<Curriculum />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/mypage" element={<Mypage />} />

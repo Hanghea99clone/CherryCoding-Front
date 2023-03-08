@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 
 const GetToken = Cookies.get("access_token");
 
@@ -8,12 +8,9 @@ export const __usercurriculum = createAsyncThunk(
   "usercurriculum",
   async (arg, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `http://3.37.146.173:8080/api/user-curriculum`,
-        {
-          headers: { Authorization: GetToken },
-        }
-      );
+      const response = await acuxios.get(`api/user-curriculum`, {
+        headers: { Authorization: GetToken },
+      });
       // console.log(response.data.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (e) {

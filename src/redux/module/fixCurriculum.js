@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 
 const token = Cookies.get("access_token");
 
@@ -8,16 +8,12 @@ export const __fixCurriculum = createAsyncThunk(
   "postLecture",
   async ({ id, datas }, thunkAPI) => {
     try {
-      const response = await axios.put(
-        `http://3.37.146.173:8080/api/curriculum/${id}`,
-        datas,
-        {
-          headers: {
-            Authorization: token,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await acuxios.put(`api/curriculum/${id}`, datas, {
+        headers: {
+          Authorization: token,
+          "Content-Type": "multipart/form-data",
+        },
+      });
       alert(
         response?.data.statusCode === 200
           ? "수정 성공했습니다."

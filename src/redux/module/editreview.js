@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 
 const token = Cookies.get("access_token");
 
@@ -8,8 +8,8 @@ export const __editReview = createAsyncThunk(
   "editReview",
   async (editNewreview, thunkAPI) => {
     try {
-      const response = await axios.put(
-        `http://3.37.146.173:8080/api/review/${editNewreview.id}`,
+      const response = await acuxios.put(
+        `api/review/${editNewreview.id}`,
         editNewreview,
         {
           headers: {

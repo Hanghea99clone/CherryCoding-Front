@@ -8,8 +8,8 @@ import { nanoid } from "nanoid";
 import "../App.css";
 import { useSelector } from "react-redux";
 
-const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
-const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
+const clientKey = process.env.REACT_APP_CLIENT;
+const customerKey = process.env.REACT_APP_CUSTOMER;
 
 function Checkout() {
   const { isLoading, error, getDetailCurriculumList } = useSelector((state) => {

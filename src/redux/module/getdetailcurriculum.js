@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 import Cookies from "js-cookie";
 
 const initialState = {
@@ -14,14 +14,11 @@ export const __getDetailCurriculumList = createAsyncThunk(
   "getDetailCurriculumList",
   async (id, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `http://3.37.146.173:8080/api/curriculum/${id.id}`,
-        {
-          headers: {
-            Authorization: GetToken,
-          },
-        }
-      );
+      const response = await acuxios.get(`api/curriculum/${id.id}`, {
+        headers: {
+          Authorization: GetToken,
+        },
+      });
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       // 오류시 사용하는 API

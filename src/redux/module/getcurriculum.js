@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { acuxios } from "../../util/axiosbase";
 
 export const __getCurriculumList = createAsyncThunk(
   "getCurriculmList",
   async (arg, thunkAPI) => {
     try {
-      const response = await axios.get("http://3.37.146.173:8080/api/lecture");
+      const response = await acuxios.get("api/lecture");
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

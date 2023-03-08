@@ -1,16 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import Cookies from "js-cookie";
+import { acuxios } from "../../util/axiosbase";
 
 const token = Cookies.get("access_token");
 
 export const __getInfinitiScroll = createAsyncThunk(
   "getInfinitiScroll",
   async (arg, thunkAPI) => {
-    //console.log(arg.page);
     try {
-      const response = await axios.get(
-        `http://3.37.146.173:8080/api/curriculum?page=${arg.page}&size=3&sortBy=createdAt`,
+      const response = await acuxios.get(
+        `api/curriculum?page=${arg.page}&size=3&sortBy=createdAt`,
         {
           headers: {
             Authorization: token,
