@@ -173,7 +173,6 @@ function Home() {
         </HomeFooterCircleText>
       </HomeFooterCircleBox>
       <HomeLineSlider></HomeLineSlider>
-      <HomeLineSliderArea></HomeLineSliderArea>
       <Footer />
     </div>
   );

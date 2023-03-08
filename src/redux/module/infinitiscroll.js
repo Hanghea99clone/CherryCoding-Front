@@ -7,19 +7,19 @@ const token = Cookies.get("access_token");
 export const __getInfinitiScroll = createAsyncThunk(
   "getInfinitiScroll",
   async (arg, thunkAPI) => {
+    //console.log(arg.page);
     try {
       const response = await axios.get(
         `http://3.37.146.173:8080/api/curriculum?page=${arg.page}&size=3&sortBy=createdAt`,
         {
           headers: {
             Authorization: token,
-            "cache-control": "no-cache",
           },
         }
       );
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      console.log(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

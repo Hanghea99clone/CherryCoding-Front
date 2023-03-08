@@ -14,21 +14,22 @@ function Mypage() {
   const [currentTab, clickTab] = useState(0);
   const mymodal = useSelector((state) => state.mymodal);
   const dispatch = useDispatch();
-
+  const userName = JSON.parse(localStorage.getItem("userInfo"));
 
   const usercurriculum = useSelector((state) => {
     return state;
   });
-  const MyCurriculum = usercurriculum?.usercurriculum?.usercurriculum?.data
-  console.log(MyCurriculum)
-
+  const MyCurriculum = usercurriculum?.usercurriculum?.usercurriculum?.data;
 
   useEffect(() => {
-    dispatch(__usercurriculum())
-  }, [dispatch])
+    dispatch(__usercurriculum());
+  }, [dispatch]);
 
   const menuArr = [
-    { name: `강좌 `, content: <UserListContainer MyCurriculum={MyCurriculum} /> },
+    {
+      name: `강좌 `,
+      content: <UserListContainer MyCurriculum={MyCurriculum} />,
+    },
     { name: "설정", content: <MyinfoEdit /> },
   ];
 
@@ -47,7 +48,7 @@ function Mypage() {
       <MypageArea>
         <h4>
           {" "}
-          <FaUserAlt /> <p>유저이름들어갈 자리</p>
+          <FaUserAlt /> <p>{userName?.userName}</p>
         </h4>
       </MypageArea>
 

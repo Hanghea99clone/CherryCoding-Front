@@ -2,19 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-
-// 리스트를 보여줄 컴포넌트
 const ListContainer = (item) => {
   const navigate = useNavigate();
   const onClickDetailPage = (id) => {
     navigate(`/detail/${id}`);
   };
-
-
-
   return (
     <MypageListBox>
       <MypageListArea>
@@ -39,7 +31,10 @@ const ListContainer = (item) => {
 
           <MypageListTextStar>
             <a>
-              리뷰<MypageListTextReview>({item?.item?.reviewCnt} 리뷰)</MypageListTextReview>
+              리뷰
+              <MypageListTextReview>
+                ({item?.item?.reviewCnt} 리뷰)
+              </MypageListTextReview>
             </a>
           </MypageListTextStar>
 

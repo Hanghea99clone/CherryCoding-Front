@@ -12,6 +12,7 @@ import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
 import { useParams } from "react-router-dom";
 import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
+import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
 
 function Fixcurriculum() {
   const [formImagin, setFormformImagin] = useState(new FormData());
@@ -53,7 +54,7 @@ function Fixcurriculum() {
     }
   }
 
-  const onValid = (data) => {
+  const onValid = async (data) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.body);
@@ -64,11 +65,10 @@ function Fixcurriculum() {
     dispatch(__fixCurriculum({ id: params.id, datas: formData }))
       .then(() => {
         dispatch(__getCurriculumList());
-        dispatch(__getInfinitiScroll({ page: 1 }));
-        navigate(`/detail/${params.id}`);
+        navigate(`/`);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        return;
       });
   };
   const mymodal = useSelector((state) => state.mymodal);
@@ -77,7 +77,7 @@ function Fixcurriculum() {
     <SignupContainer>
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
-      <h2>게시물 수정</h2>
+      <RegistrationTitle>게시물 수정</RegistrationTitle>
       <SignupBox>
         {preview && (
           <img
@@ -165,6 +165,10 @@ const SignupForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const RegistrationTitle = styled.h2`
+  margin-left: 50px;
 `;
 
 const Regiinput = styled.input`

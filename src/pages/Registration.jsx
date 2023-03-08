@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import { __postLecture } from "../redux/module/registration";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
+import { __getCurriculumList } from "../redux/module/getcurriculum";
 
 function Registration() {
   const [formImagin, setFormformImagin] = useState(new FormData());
@@ -49,7 +50,7 @@ function Registration() {
     }
   }
 
-  const onValid = (data) => {
+  const onValid = async (data) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.body);
@@ -57,7 +58,9 @@ function Registration() {
     for (const keyValue of formImagin) {
       formData.append(keyValue[0], keyValue[1]);
     }
-    dispatch(__postLecture(formData));
+    await dispatch(__postLecture(formData));
+    await dispatch(__getCurriculumList());
+    navigate("/");
   };
   const mymodal = useSelector((state) => state.mymodal);
 
@@ -65,7 +68,7 @@ function Registration() {
     <SignupContainer>
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
-      <h2>게시물 등록</h2>
+      <RegistrationTitle>게시물 등록</RegistrationTitle>
       <SignupBox>
         {preview && (
           <img
@@ -181,6 +184,10 @@ const RegiTextarea = styled(Regiinput)`
   border: 1px solid black;
   margin-bottom: 20px;
   resize: none;
+`;
+
+const RegistrationTitle = styled.h2`
+  margin-left: 50px;
 `;
 
 const RegiinputFile = styled(Regiinput)`

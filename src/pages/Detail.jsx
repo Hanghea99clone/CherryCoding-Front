@@ -14,6 +14,7 @@ import Aboutmymodal from "../components/Aboutmymodal";
 import { __editReview } from "../redux/module/editreview";
 import { __postregistercourse } from "../redux/module/postregistercourse";
 import { __deleteCurriculum } from "../redux/module/deleteCurriculum";
+import { __getCurriculumList } from "../redux/module/getcurriculum";
 
 function Detail() {
   const params = useParams();
@@ -68,8 +69,8 @@ function Detail() {
   const onDeleteBtnHandler = async (id) => {
     const confirmText = window.confirm("정말로 삭제하시겠습니까?");
     if (confirmText) {
-      dispatch(__deleteReview(id));
-      dispatch(__getDetailCurriculumList(params));
+      await dispatch(__deleteReview(id));
+      await dispatch(__getDetailCurriculumList(params));
     } else {
       return;
     }
@@ -79,11 +80,6 @@ function Detail() {
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
   const [reviewId, setReviewId] = useState(null);
-
-  const handleClick = (id) => {
-    setShowInput(true);
-    setReviewId(id);
-  };
 
   const onUpdateBtnHandler = async () => {
     const editNewreview = {
@@ -100,6 +96,8 @@ function Detail() {
 
   function deleteCurriculum() {
     dispatch(__deleteCurriculum(params.id));
+    dispatch(__getCurriculumList());
+    navigate("/");
   }
 
   return (
@@ -221,7 +219,6 @@ function Detail() {
                     </div>
                   )}
                 </div>
-                <Button onClick={() => handleClick(item.id)}>수정하기</Button>
                 <Button onClick={() => onDeleteBtnHandler(item.id)}>
                   삭제
                 </Button>
