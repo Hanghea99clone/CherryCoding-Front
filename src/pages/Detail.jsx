@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
-// import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
@@ -14,6 +13,9 @@ import Aboutmymodal from "../components/Aboutmymodal";
 import { __editReview } from "../redux/module/editreview";
 import { __postregistercourse } from "../redux/module/postregistercourse";
 import { __deleteCurriculum } from "../redux/module/deleteCurriculum";
+import { MdRateReview } from "react-icons/md";
+import { FaUserCircle } from 'react-icons/fa'
+import { AiFillDelete } from 'react-icons/ai'
 
 function Detail() {
   const params = useParams();
@@ -44,9 +46,7 @@ function Detail() {
   };
 
   const ListReview = List?.reviewList;
-  // reviewContent
 
-  //리뷰 작성하는 곳
   const [titleValue, setTitleValue] = useState("");
   const [contentValue, setContentValue] = useState("");
 
@@ -101,23 +101,34 @@ function Detail() {
   function deleteCurriculum() {
     dispatch(__deleteCurriculum(params.id));
   }
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+  const isAdmin = userInfo.isAdmin
 
   return (
     <div>
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
+
       <DetailContainer>
-        <button onClick={() => navigate(`/fixcurriculum/${data.id}`)}>
-          수정하기
-        </button>
-        <button onClick={deleteCurriculum}>강좌 삭제하기</button>
+        {
+          isAdmin === 'true' ? (
+            <DetailUnpateBox>
+              <button
+                style={{ background: "#748ffc" }}
+                onClick={() => navigate(`/fixcurriculum/${data.id}`)}>
+                수정하기
+              </button>
+              <button
+                style={{ background: "#ff5554" }}
+                onClick={deleteCurriculum}>강좌 삭제하기</button></DetailUnpateBox>
+          ) : null
+        }
         <DetailNavListBox>
           <h6>
-            {" "}
             홈 / 강좌 / WEB / ({List?.price}원) {List?.title}
           </h6>
           <h2>
-            ({List?.price}원,) {List?.title}
+            ({List?.price}원) {List?.title}
           </h2>
           <h6> ( {List?.reviewCnt} 리뷰 ) 수강생</h6>
         </DetailNavListBox>
@@ -137,6 +148,7 @@ function Detail() {
                     height: "80px",
                     backgroundColor: "#ff5554",
                     color: "#fff",
+                    borderRadius: "0.625rem"
                   }}
                 >
                   수강 신청하기🔥
@@ -149,6 +161,7 @@ function Detail() {
                     height: "80px",
                     backgroundColor: "#ff5554",
                     color: "#fff",
+                    borderRadius: "0.625rem"
                   }}
                 >
                   수강 계속하기🧑🏻‍💻
@@ -159,10 +172,10 @@ function Detail() {
                 {List?.isEnrolled == false ? (
                   <li>수강신청해보세요! </li>
                 ) : (
-                  <li>수강중! </li>
+                  <li >수강중! </li>
                 )}
 
-                <li>강의 남은기간</li>
+                <li style={{ marginTop: "1rem", }}>{List?.price}원</li>
               </ul>
             </DetailTextArea2>
 
@@ -180,58 +193,47 @@ function Detail() {
         <DetailMainTextArea>
           <p>&nbsp;</p>
           <p>
-            코드짜다가 갑자기 2일 전으로 시간을 돌리고 싶으면? 팀원과 코드
-            충돌없이 협업하고 싶으면? 버전 컨트롤을 도와주는 소프트웨어인 git
-            쓰면 가능합니다. 그리고 git 모르면 취업 못함 git checkout으로
-            뻘짓하던 예전보다 더 쉬워진 git restore, switch 신문법을 이용하고
-            구닥다리 Vim과 터미널 말고 VSCode 에디터를 사용해서 git을
-            배워봅시다. 평생 코딩노예만 할 것이면 git add, git commit, git push,
-            git pull 만 알아도 되긴 합니다만 나중에 코딩노예 팀을 지휘하고 싶은
-            분들을 위한 branch, merge 전략까지 다루고 있습니다. (현재 수강료 0원
-            이벤트중, 수강기간 6개월)
+            {List?.content}
           </p>
         </DetailMainTextArea>
 
         <DetailReviewBox>
-          <h2>{List?.title}의 강좌 리뷰</h2>
+          <h2>{List?.title} 강좌 리뷰</h2>
 
           {ListReview?.map((item) => {
             return (
               <DetailReviewArea key={item.id}>
-                <h3>{item.id}</h3>
-                <h3>{item.reviewTitle}</h3>
-                <p>{item.reviewContent}</p>
-                <span>{item.nickname}</span>
-                <div>
-                  {showInput && (
-                    <div>
-                      <input
-                        type="text"
-                        value={editTitle}
-                        onChange={(event) => setEditTitle(event.target.value)}
-                      />
-                      <textarea
-                        type="text"
-                        value={editContent}
-                        onChange={(event) => setEditContent(event.target.value)}
-                      />
-                      <Button onClick={() => onUpdateBtnHandler(item.id)}>
-                        수정완료
-                      </Button>
-                    </div>
-                  )}
-                </div>
-                <Button onClick={() => handleClick(item.id)}>수정하기</Button>
-                <Button onClick={() => onDeleteBtnHandler(item.id)}>
-                  삭제
-                </Button>
+                <DetailRevieImageArea>
+
+                  <div><FaUserCircle /></div>
+                  <h4>닉네임:{item.nickname}</h4>
+                </DetailRevieImageArea>
+
+                <DetailRevieTextArea>
+
+                  <DetailRevieTextTitleArea>
+                    <h3>{item.reviewTitle}</h3>
+                  </DetailRevieTextTitleArea>
+
+                  <DetailRevieTextContenteArea>
+                    <p>{item.reviewContent}</p>
+                  </DetailRevieTextContenteArea>
+
+                  <DetailRevieTextButtonArea>
+
+                    <p>{item.modifiedAt.slice(0, 10)}</p>
+                    <button onClick={() => onDeleteBtnHandler(item.id)}><AiFillDelete /></button>
+
+                  </DetailRevieTextButtonArea>
+
+                </DetailRevieTextArea>
               </DetailReviewArea>
             );
           })}
         </DetailReviewBox>
 
         <DetailRevieMake onSubmit={onCreate}>
-          <label htmlFor="text">리뷰</label>
+          <label htmlFor="text"> 리뷰 작성 <MdRateReview />   </label>
 
           <input
             id="text"
@@ -239,8 +241,7 @@ function Detail() {
             value={titleValue}
             placeholder="리뷰 제목을 작성해주세요"
             onChange={(event) => setTitleValue(event.target.value)}
-            required
-          />
+            required />
 
           <textarea
             id="text"
@@ -248,13 +249,14 @@ function Detail() {
             value={contentValue}
             placeholder="리뷰를 작성해주세요"
             onChange={(event) => setContentValue(event.target.value)}
-            required
-          />
+            required />
+
           <button type="submit">리뷰 등록</button>
+
         </DetailRevieMake>
       </DetailContainer>
       <Footer />
-    </div>
+    </div >
   );
 }
 
@@ -265,10 +267,30 @@ const DetailContainer = styled.div`
   border: 1px solid gray;
 `;
 
+const DetailUnpateBox = styled.div`
+  width: 50%;
+  height: 3rem;
+  margin: 0 auto;
+  display: flex;;
+  align-items: center;
+  justify-content: center;
+  gap: 0 20px;
+  > button {
+    width: 7.5rem;
+    height: 1.875rem;
+    border-radius: .4375rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    }
+`
+
+
+
 const DetailNavListBox = styled.div`
   width: 90%;
   height: 9.375rem;
-  /* border: 1px solid gray; */
   margin: 1.25rem auto;
   display: flex;
   flex-direction: column;
@@ -287,7 +309,6 @@ const DetailNavListBox = styled.div`
 const DetailImgTextBox = styled.div`
   width: 90%;
   height: 60%;
-  /* border: 1px solid red; */
   margin-left: 3.75rem;
   display: flex;
   align-items: center;
@@ -310,7 +331,6 @@ const DetailImgArea = styled.div`
 const DetailTextArea = styled.div`
   width: 30%;
   height: 100%;
-  /* border: 1px solid red; */
   ${(props) => props.theme.FelexCenter}
   flex-direction: column;
   gap: 50px 0;
@@ -325,13 +345,11 @@ const DetailTextArea2 = styled.div`
   padding-top: 1.25rem;
   ${(props) => props.theme.FelexCenter};
   flex-direction: column;
-  border: 3px solid red;
-  gap: 60px 0;
+  background: #Fafafa;;
+  gap: 3.75rem 0;
   > ul {
-    padding: 20px;
-  }
-  > li {
-    padding: 10px 0;
+    padding: 1.25rem; 
+    text-align: center;
   }
 `;
 
@@ -341,24 +359,25 @@ const DetailMainTextBox = styled.div`
   padding: 0.625rem;
   margin-top: 1.25rem;
   background: #fafafa;
-
   display: flex;
   align-items: center;
   margin-left: 70px;
+  > p {
+    color: #FF4949;
+    padding: .75rem .625rem;
+  }
 `;
 
 const DetailMainTextArea = styled.div`
   width: 62%;
-  padding: 0.625rem;
-  height: 31.25rem;
-  border: 1px solid red;
+  padding: 1.875rem;
+  height: 12.5rem;
   margin-top: 20px;
   margin-left: 70px;
 `;
 
 const DetailReviewBox = styled.div`
   width: 80%;
-  border: 1px solid red;
   margin-top: 20px;
   margin-left: 70px;
   flex-direction: column;
@@ -367,31 +386,100 @@ const DetailReviewBox = styled.div`
 `;
 
 const DetailReviewArea = styled.div`
-  width: 60%;
-  height: 10rem;
+  width: 70%;
+  height: 12.5rem;
   margin-left: 1.25rem;
+  display: flex;
+  padding: .625rem;
+  border-top: 1px solid #000;
+  margin-top: 1.25rem;
+`;
+
+const DetailRevieImageArea = styled.div`
+  width: 30%;
+  height: 100%;
+  display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
-  border: 1px solid #eee;
-  border-radius: 1.5rem;
+  > div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    height: 20%;
+    margin-top: 1.25rem;
+  }
+  h4{
+    width: 100%;
+    margin-top: 1.25rem;
+    text-align: center;
+    font-size: .9375rem;
+  }
+
 `;
+
+const DetailRevieTextArea = styled.div`
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #000;
+`;
+const DetailRevieTextTitleArea = styled.div`
+  width: 90%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-bottom: 1px solid #000;
+`;
+
+const DetailRevieTextContenteArea = styled.div`
+  width: 90%;
+  height: 60%;
+  display: flex;
+  padding-top: .625rem; 
+  padding-left: 1rem;
+`;
+
+const DetailRevieTextButtonArea = styled.div`
+  width: 100%;
+  height: 20%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 1rem;
+  > button {
+    width: 20%;
+  }
+`
+
 
 const DetailRevieMake = styled.form`
   width: 60%;
   height: 12.5rem;
-  border: 1px solid red;
   margin-top: 3.125rem;
   margin-left: 4.375rem;
   margin-bottom: 4rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  padding: 1.25rem;
   gap: 20px 0;
-
+  > input {
+    width: 20rem;
+    height: 2.5rem;
+  }
   > textarea {
     width: 25rem;
     height: 3.75rem;
     padding: 1.25rem;
+    resize: none;
+  }
+  > button {
+    width: 10rem;
   }
 `;
