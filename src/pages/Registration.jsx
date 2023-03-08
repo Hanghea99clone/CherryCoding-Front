@@ -70,29 +70,38 @@ function Registration() {
       <Header />
       {mymodal ? <Aboutmymodal /> : null}
 
-      <RegistrationTitle>게시물 등록</RegistrationTitle>
+      {/* <RegistrationTitle>게시물 등록</RegistrationTitle> */}
       <SignupBox>
-        {preview && (
-          <img
-            style={{
-              width: "200px",
-              height: "200px",
-              borderRadius: "20px",
-              marginBottom: "40px",
-            }}
-            src={preview}
-            alt="Preview"
-          />
-        )}
+        <BoxLogoArea><img src={codingcherrylogo} /> <p style={{ fontSize: "1rem" }}>강의 등록 !</p></BoxLogoArea>
+
         <SignupForm onSubmit={handleSubmit(onValid)}>
-          <RegiinputFile
-            as={"input"}
-            type="file"
-            accept="image/*"
-            onChange={onChangeimge}
-          />
+
+          <FormImgArea>
+            {preview && (
+              <div>
+                <img
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  src={preview}
+                  alt="Preview"
+                />
+              </div>
+            )}
+            <div>
+              <RegiinputFile
+                as={"input"}
+                type="file"
+                accept="image/*"
+                onChange={onChangeimge}
+              />
+            </div>
+          </FormImgArea>
+
           <div>
             <Regiinput
+              style={{ marginTop: "40px" }}
               type="text"
               {...register("title", {
                 required: "제목을 입력해주세요.",
@@ -103,7 +112,7 @@ function Registration() {
           <span>{errors?.title?.message}</span>
           <div>
             <Regiinput
-              type="text"
+              type="number"
               {...register("price", {
                 required: "가격을 입력해주세요.",
                 pattern: {
@@ -144,52 +153,85 @@ const SignupContainer = styled.div`
 `;
 
 const SignupBox = styled.div`
-  //border: 1px solid black;
-  height: 100%;
+  width: 60%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  background: #f1f3f5;
+  border-radius: .9375rem;
+`;
+
+const BoxLogoArea = styled.div`
+  width: 100%;
+  height: 4.375rem;
+  display: flex;
+  align-items: center;
+  > img {
+    padding-left: 3.125rem;
+    width: 20%;
+  }
 `;
 
 const SignupForm = styled.form`
-  //border: 1px solid black;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
+const FormImgArea = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem 2.5rem;
+  > div {
+    width: 50%;
+    height: 100%;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .625rem;
+  }
+
+`
+
+
+
 const Regiinput = styled.input`
-  height: 39px;
-  margin-top: 10px;
-  padding-left: 12px;
+  height: 1.875rem;
+  margin-top: .625rem;
+  padding-left: .75rem;
   border: none;
-  border-radius: 4px;
-  font-size: 19px;
+  border-radius: .25rem;
+  font-size: 1.2rem;
   font-weight: bold;
   outline: none;
   border: 1px solid black;
-  margin-bottom: 20px;
+  margin-top: 1.25rem;
 `;
 
 const RegiTextarea = styled(Regiinput)`
-  width: 400px;
-  height: 300px;
-  margin-top: 10px;
-  padding-left: 12px;
+  width: 25rem;
+  height: 15.625rem;
+  margin-top: .625rem;
   border: none;
-  border-radius: 4px;
-  font-size: 19px;
+  border-radius: 0.25rem;
+  font-size: 1.1875rem;
   font-weight: bold;
   outline: none;
   border: 1px solid black;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   resize: none;
+  padding: 1.25rem;
+  
 `;
 
 const RegistrationTitle = styled.h2`
-  margin-left: 50px;
+  margin-left: 3.125rem;
 `;
 
 const RegiinputFile = styled(Regiinput)`
