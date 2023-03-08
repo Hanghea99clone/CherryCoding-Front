@@ -47,7 +47,7 @@ const UserListContainer = (MyCurriculum) => {
                 </MypageListTextBody>
 
                 <MypageListTextBtn>
-                  <p>{item?.price}원</p>
+                  <p>수강중! </p>
                 </MypageListTextBtn>
               </MypageListDivText>
             </MypageListArea>

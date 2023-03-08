@@ -157,7 +157,7 @@ function Detail() {
                 </Button>
               ) : (
                 <Button
-                  onClick={registercourse}
+                  // onClick={registercourse}
                   style={{
                     width: "220px",
                     height: "80px",
@@ -166,7 +166,7 @@ function Detail() {
                     borderRadius: "0.625rem",
                   }}
                 >
-                  수강 계속하기🧑🏻‍💻
+                  강의 보기🧑🏻‍💻
                 </Button>
               )}
 
