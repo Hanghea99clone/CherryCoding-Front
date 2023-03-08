@@ -12,8 +12,7 @@ import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
 
 function Curriculum() {
   const page = useRef(1);
-  let pageData = useRef({});
-  let [ref, inView] = useInView();
+  const [ref, inView] = useInView();
   const dispatch = useDispatch();
   const mymodal = useSelector((state) => state.mymodal);
   //console.log(pageData?.current[0].data?.length);
@@ -25,22 +24,17 @@ function Curriculum() {
     error: isEror,
   } = useSelector((state) => state.infinite);
 
-  const currentId = data[0]?.data[data[0]?.data?.length - 1]?.id;
-
-  pageData = currentId;
-  //console.log(inView && currentId !== pageData);
-
   useEffect(() => {
     dispatch(__getInfinitiScroll({ page: page.current }));
     dispatch(myModal(false));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (inView) {
       page.current += 1;
       dispatch(__getInfinitiScroll({ page: page.current }));
     }
-  }, [inView]);
+  }, [inView, dispatch]);
 
   return (
     <>
