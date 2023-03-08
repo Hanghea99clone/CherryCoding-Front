@@ -66,6 +66,8 @@ function Checkout() {
     }
   }
 
+  const [isHovering, setIsHovering] = useState(0);
+
 
   return (
     <div className="App">
@@ -81,9 +83,12 @@ function Checkout() {
         <label>5,000원 할인 쿠폰 적용</label>
       </div>
 
-      <ButtonBox>
+      <ButtonBox onMouseOver={() => setIsHovering(1)}
+        onMouseOut={() => setIsHovering(0)}>
+        {
+          isHovering ? (<div className="tooltip">{List?.price}원..</div>) : null
+        }
 
-        <div className="tooltip">{List?.price}원..</div>
         <Button onClick={requestPayment}>결제하기</Button>
       </ButtonBox>
 
@@ -101,6 +106,7 @@ const ButtonBox = styled.div`
   display: flex;;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s ;
 
   .tooltip {
     position: absolute;
@@ -116,6 +122,7 @@ const ButtonBox = styled.div`
     font-size: 14px;
     font-weight: 400;
     border-radius: 1.25rem;
+    transition: all 0.5s ;
     &::after{
     content: "";
     position: absolute;
@@ -149,23 +156,11 @@ const Button = styled.button`
   
     &:focus{
     outline: none;
-    .tooltip{
-      display: block;
-    }
    }
 
    &:hover {
     background-color: #1b64da;
     box-shadow: 0 2px 4px rgba(0,79,255,0.6);
     cursor: pointer;
-    .tooltip {
-      display: block;
-    }
-
-
-  &:hover > .tooltip{
-    display: block;
-  }
- 
 }
 `;
