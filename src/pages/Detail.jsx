@@ -43,6 +43,7 @@ function Detail() {
   };
 
   const registercourse = () => {
+    navigate("/checkout");
     dispatch(__postregistercourse(data));
   };
 

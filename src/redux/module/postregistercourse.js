@@ -15,7 +15,6 @@ export const __postregistercourse = createAsyncThunk(
           headers: { Authorization: GetToken },
         }
       );
-      alert(response.data.data);
     } catch (e) {
       alert(
         e.response.status === 400
