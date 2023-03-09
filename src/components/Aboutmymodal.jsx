@@ -40,7 +40,7 @@ function Aboutmymodal() {
             <span>마이페이지</span>
           </Link>
         </AboutmymodalSpanArea>
-        {isAdmin.isAdmin === "true" ? (
+        {isAdmin?.isAdmin === "true" ? (
           <AboutmymodalSpanArea>
             <Link to={`/registration`}>
               <span>등록하기</span>

@@ -26,7 +26,7 @@ function Header() {
   };
 
   useEffect(() => {
-    if (logininfo.login) {
+    if (logininfo?.login) {
       dispatch(toggle(false));
     }
   }, [logininfo.login]);
@@ -51,7 +51,7 @@ function Header() {
           {isLogin() ? (
             <HeaderDiv>
               <HeaderMymodal onClick={() => mymodalOpen()} />
-              <span>{userName.userName}</span>
+              <span>{userName?.userName}</span>
             </HeaderDiv>
           ) : (
             <div>
