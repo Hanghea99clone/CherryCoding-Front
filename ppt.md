@@ -57,16 +57,6 @@ BE : 유영우, 나도관, 강민규, 김정규
 
 ---
 
-# ERD
-
-<html>
-    <div align="center">
-        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c5be185d-bfff-43c8-9836-b52b4c51d03f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230308%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230308T100941Z&X-Amz-Expires=86400&X-Amz-Signature=fbce01a06c2ad338220364f887be5a7db35757ff133074b198a1a85fce5dffea&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject" style="height:80%; width:55%">
-    </div>
-</html>
-
----
-
 # Feat
 
 - 강좌 등록
@@ -77,6 +67,16 @@ BE : 유영우, 나도관, 강민규, 김정규
 - Swagger
 - 내정보수정
 - 토스 페이먼츠 API
+
+---
+
+# ERD
+
+<html>
+    <div align="center">
+        <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c5be185d-bfff-43c8-9836-b52b4c51d03f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230308%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230308T100941Z&X-Amz-Expires=86400&X-Amz-Signature=fbce01a06c2ad338220364f887be5a7db35757ff133074b198a1a85fce5dffea&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject" style="height:80%; width:55%">
+    </div>
+</html>
 
 ---
 
