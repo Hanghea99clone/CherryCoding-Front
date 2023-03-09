@@ -168,11 +168,16 @@
 <img width="500" alt="스크린샷 2023-03-09 15 45 49" src="https://user-images.githubusercontent.com/95469708/223942265-66e99a9c-7d51-4702-a255-e66875ecdbc0.png"> 
 
 
+
 ### 마이페이지
-- 내 강의
-	<img width="700" alt="스크린샷 2023-03-09 15 51 06" src="https://user-images.githubusercontent.com/95469708/223943326-828d0e7f-5e95-43ae-a499-aa5de5c3cd58.png">
-- 내 정보 설정 
-	<img width="700" alt="스크린샷 2023-03-09 15 51 20" src="https://user-images.githubusercontent.com/95469708/223943498-4855a84d-fa9c-4117-a2e7-252a6554f2d8.png">
+
+1. 내강의 
+
+<img width="700" alt="스크린샷 2023-03-09 15 51 06" src="https://user-images.githubusercontent.com/95469708/223943326-828d0e7f-5e95-43ae-a499-aa5de5c3cd58.png">
+
+2. 내정보 설정 
+
+<img width="700" alt="스크린샷 2023-03-09 15 51 20" src="https://user-images.githubusercontent.com/95469708/223943498-4855a84d-fa9c-4117-a2e7-252a6554f2d8.png">
 
 
 
