@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Button from "../components/Button";
 
 export const HomeBox = styled.div`
-  //border: 0.0625rem solid red;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -11,41 +10,35 @@ export const HomeBox = styled.div`
 `;
 
 export const HomeImgSpanArea = styled.div`
-  //border: .0625rem solid black;
   height: 25rem;
 `;
 
 export const HomeBoxDiv = styled.div`
-  //border: .0625rem solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 25rem;
   @media screen and (max-width: 1500px) {
-    margin-left: 50px;
+    margin-left: 3.125rem;
   }
-  @media screen and (max-width: 1100px) {
-    margin-left: 50px;
-    font-size: 12px;
+  @media screen and (max-width: 68.75rem) {
+    margin-left: 3.125rem;
+    font-size: 0.75rem;
   }
 `;
 
 export const HomeBannerImg = styled.img`
-  //border: .0625rem solid black;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  //background-color: red;
 `;
 export const HomeBoxContainer = styled.div`
-  //border: 0.0625rem solid blue;
   ${(props) => props.theme.FelexCenter}
   width: 100%;
   background-color: #4a2884;
 `;
 
 export const HomeImgBanner = styled.img`
-  //border: 0.0625rem solid red;
   width: 50%;
   height: 50%;
   margin-top: 3.125rem;
@@ -55,45 +48,41 @@ export const HomeImgBanner = styled.img`
 `;
 
 export const HomeGideBox = styled.div`
-  //border: 1px solid black;
   height: 12.5rem;
   ${(props) => props.theme.FelexCenter}
 `;
 
 export const HomeGideBoxSpanDivArea = styled.div`
-  //border: 1px solid black;
   width: 18.75rem;
   height: 6.25rem;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   background-color: black;
   color: white;
   ${(props) => props.theme.FelexCenter}
   flex-direction: column;
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
 
 export const HomeImageBox = styled.div`
-  //border: 0.0625rem solid blue;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 3.125rem;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const HomeGridArea = styled.div`
-  //border: 0.0625rem solid blue;
   display: grid;
   width: 80%;
   place-items: center;
   grid-template-rows: repeat(1, 1fr);
   grid-template-columns: repeat(3, 1fr);
-  row-gap: 100px;
+  row-gap: 6.25rem;
   img {
-    width: 300px;
+    width: 18.75rem;
   }
   @media screen and (max-width: 1230px) {
-    padding: 30px;
+    padding: 1.875rem;
   }
   @media screen and (max-width: 1396px) {
     display: flex;
@@ -102,7 +91,6 @@ export const HomeGridArea = styled.div`
 `;
 
 export const HomeContentsGridArea = styled.div`
-  //border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,7 +103,7 @@ export const HomeContentGridImg = styled.img`
 `;
 
 export const HomeTitleGridArea = styled.div`
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 export const HomeTitleGrid = styled.span`
@@ -126,9 +114,8 @@ export const HomeTitleGrid = styled.span`
 `;
 
 export const HomeTextGrid = styled.div`
-  width: 330px;
-  //border: 1px solid black;
-  margin-top: 20px;
+  width: 20.625rem;
+  margin-top: 1.25rem;
   white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -140,26 +127,24 @@ export const HomeTextGrid = styled.div`
 `;
 
 export const HomeMiddleTextBox = styled.div`
-  //border: 1px solid red;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 200px;
-  padding: 0 20px 0 20px;
+  margin-top: 12.5rem;
+  padding: 0 1.25rem 0 1.25rem;
   @media screen and (min-width: 1900px) {
     justify-content: space-evenly;
   }
 `;
 
 export const HomeMiddleImg = styled.img`
-  //border: 1px solid black;
   @media screen and (min-width: 1900px) {
     width: 30%;
   }
   width: 40%;
-  margin-bottom: 60px;
+  margin-bottom: 3.75rem;
 `;
 
 export const HomeMiddleSpan = styled.span`
@@ -167,17 +152,16 @@ export const HomeMiddleSpan = styled.span`
 `;
 
 export const HomeMiddleP = styled.p`
-  margin-top: 20px;
+  margin-top: 1.25rem;
 `;
 
 export const HomeBottomBox = styled.div`
-  //border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #484848;
-  padding: 20px;
+  padding: 1.25rem;
 `;
 
 export const HomeBottomSpanArea = styled.div`
@@ -186,7 +170,7 @@ export const HomeBottomSpanArea = styled.div`
 `;
 
 export const HomeBottomSpan = styled.div`
-  margin-top: 10px;
+  margin-top: 0.625rem;
 `;
 
 export const HomeBottomDiv = styled.div`
@@ -200,35 +184,32 @@ export const HomeBottomImg = styled.img`
 `;
 
 export const HomeBottom = styled.span`
-  font-size: 25px;
+  font-size: 1.5625rem;
 `;
 
 export const HomeFooterBox = styled.div`
-  //border: 1px solid black;
   width: 100%;
-  height: 150px;
+  height: 9.375rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 6.25rem;
 `;
 
 export const HomeFooterArea = styled.div`
-  //border: 1px solid red;
   background-color: #f0f0f0;
-  width: 600px;
-  height: 150px;
+  width: 37.5rem;
+  height: 9.375rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 1.25rem;
 `;
 
 export const HomeFooterCircleImg = styled.img`
-  //border: 1px solid black;
   width: 40%;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
   font-size: 16px;
   @media screen and (min-width: 1100px) {
     width: 20%;
@@ -236,7 +217,6 @@ export const HomeFooterCircleImg = styled.img`
 `;
 
 export const HomeFooterCircleBox = styled.div`
-  //border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -245,7 +225,6 @@ export const HomeFooterCircleBox = styled.div`
 `;
 
 export const HomeFooterCircleText = styled.div`
-  //border: 1px solid black;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -253,14 +232,14 @@ export const HomeFooterCircleText = styled.div`
 `;
 
 export const HomeFooterCircleButton = styled(Button)`
-  margin-top: 30px;
+  margin-top: 1.875rem;
 `;
 
 export const HomeLineSlider = styled.div`
-  border: 2px solid black;
-  margin-top: 100px; ;
+  border: 0.125rem solid black;
+  margin-top: 6.25rem; ;
 `;
 
 export const HomeLineSliderArea = styled.div`
-  height: 300px;
+  height: 18.75rem;
 `;
