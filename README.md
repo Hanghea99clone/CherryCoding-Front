@@ -19,7 +19,8 @@
 | 권도민 | `프론트엔드`   | 팀원           | [9mean2](https://github.com/9mean2)            | 
 | 유영우  | `백엔드`        | `팀장`          | [Heukwu](https://github.com/DOGWANNA)            |     
 | 나도관 | `백엔드`         | 팀원           | [DOGWANNA](https://github.com/DOGWANNA)    |     
-| 김정규 | `백엔드`         | 팀원           |[kimregular](https://github.com/kimregular)         |    
+| 김정규 | `백엔드`         | 팀원           |[kimregular](https://github.com/kimregular)         |
+| 강민규 | `백엔드`         | 팀원           |[Kimchi_person](https://github.com/kimchi-person)         |
 
 
 ### FE 폴더구조 ⚒
