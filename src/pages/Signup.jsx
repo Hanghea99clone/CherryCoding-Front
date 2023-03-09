@@ -190,13 +190,11 @@ function Signup() {
 }
 
 const SignupContainer = styled.div`
-  //border: 1px solid red;
   height: 100vh;
   width: 100vw;
 `;
 
 const SignupBox = styled.div`
-  //border: 1px solid red;
   height: 100%;
   width: 100%;
   display: flex;
@@ -207,7 +205,6 @@ const SignupBox = styled.div`
 `;
 
 const SginupTitleBox = styled.div`
-  //border: 1px solid red;
   width: 100%;
   height: 4.375rem;
   background-color: #fafafa;
@@ -215,13 +212,11 @@ const SginupTitleBox = styled.div`
 `;
 
 const SignupTitle = styled.h2`
-  //border: 1px solid red;
   width: 100%;
   margin-left: 3.125rem;
 `;
 
 const SignupForm = styled.form`
-  //border: 1px solid red;
   display: flex;
   width: 80%;
   height: 100%;
@@ -233,15 +228,15 @@ const SignupForm = styled.form`
 const Signupinput = styled.input`
   height: 2.4375rem;
   width: 43.75rem;
-  margin-top: 10px;
-  padding-left: 12px;
+  margin-top: 0.625rem;
+  padding-left: 0.75rem;
   border: none;
-  border-radius: 4px;
-  font-size: 19px;
+  border-radius: 0.25rem;
+  font-size: 1.1875rem;
   font-weight: bold;
   outline: none;
   border: 1px solid black;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 `;
 
 const SignupInputArea = styled.div`

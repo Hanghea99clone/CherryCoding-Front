@@ -80,8 +80,8 @@ const Modalblack = styled.div`
 `;
 
 const Modalback = styled.div`
-  width: 380px;
-  height: 380px;
+  width: 23.75rem;
+  height: 23.75rem;
   z-index: 999;
   position: fixed;
   top: 50%;
@@ -96,35 +96,34 @@ const ModalloginTextArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 20px;
-  margin-top: 20px;
-  padding: 20px;
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+  padding: 1.25rem;
 `;
 
 const Modalloginclose = styled.span`
   cursor: pointer;
-  font-size: 15px;
+  font-size: 0.9375rem;
 `;
 
 const ModalloginInputBox = styled.div`
-  //border: 1px solid red;
-  margin-top: 25px;
+  margin-top: 1.5625rem;
   width: 100%;
 `;
 
 const Modallogininput = styled.input`
-  height: 39px;
-  margin-top: 10px;
-  padding-left: 12px;
+  height: 2.4375rem;
+  margin-top: 0.625rem;
+  padding-left: 0.75rem;
   border: none;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: bold;
   outline: none;
-  border-bottom: 1px solid black;
-  margin-bottom: 20px;
-  width: 300px;
+  border-bottom: 0.0625rem solid black;
+  margin-bottom: 1.25rem;
+  width: 18.75rem;
   :focus {
-    border-bottom: 1px solid #64a8c6;
+    border-bottom: 0.0625rem solid #64a8c6;
   }
 `;
 
@@ -135,7 +134,7 @@ const ModalloginForm = styled.form`
 `;
 
 const ModalloginBtn = styled(Button)`
-  margin-top: 32px;
+  margin-top: 2rem;
 `;
 
 export default Modallogin;

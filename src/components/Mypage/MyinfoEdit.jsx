@@ -4,7 +4,7 @@ import { FaLock } from "react-icons/fa";
 import Button from "../Button";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { __undateMyinfo } from "../../redux/module/updateuserinfo";
+import { __undateMyinfo } from "../../redux/module/updateUserInfo";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -139,8 +139,8 @@ const MypageMyinfoEditBox = styled.div`
   gap: 1.875rem 0;
 
   > h2 {
-    padding: 10px;
-    font-size: 25px;
+    padding: 0.625rem;
+    font-size: 1.5625rem;
     text-align: center;
   }
 `;
@@ -155,14 +155,14 @@ const MypageMyinfoEditArea = styled.form`
 
 const MypageMyinfoEditInputArea = styled.div`
   position: relative;
-  margin: 20px 0;
+  margin: 1.25rem 0;
   width: 19.375rem;
   height: 12.5rem;
   ${(props) => props.theme.FelexCenter};
   > label {
     position: absolute;
     top: 50%;
-    left: 5px;
+    left: 0.3125rem;
     transform: translateY(-50%);
     font-size: 1em;
     pointer-events: none;
@@ -171,9 +171,9 @@ const MypageMyinfoEditInputArea = styled.div`
   }
   > input {
     width: 100%;
-    height: 50px;
-    font-size: 1em;
-    padding: 0 35px 0 5px;
+    height: 3.125rem;
+    font-size: 1rem;
+    padding: 0 2.1875rem 0 0.3125rem;
     color: #000;
     padding-left: 1.25rem;
     border-radius: 0.625rem;
@@ -182,16 +182,16 @@ const MypageMyinfoEditInputArea = styled.div`
     border: 1px solid gray;
   }
   > input:focus ~ label {
-    top: -5px;
+    top: -0.3125rem;
   }
   > input:valid ~ label {
-    top: -5px;
+    top: -0.3125rem;
   }
   > div {
     position: absolute;
-    right: 10px;
+    right: 0.625rem;
     font-size: 1.2em;
-    top: 20px;
+    top: 1.25rem;
   }
 `;
 

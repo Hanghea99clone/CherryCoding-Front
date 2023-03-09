@@ -17,7 +17,6 @@ function Checkout() {
   });
 
   const List = getDetailCurriculumList?.data?.data;
-  console.log(List);
 
   const paymentWidgetRef = useRef(null);
   const paymentMethodsWidgetRef = useRef(null);
@@ -62,12 +61,11 @@ function Checkout() {
         failUrl: `${window.location.origin}/fail`,
       });
     } catch (err) {
-      console.log(err);
+      return err;
     }
   }
 
   const [isHovering, setIsHovering] = useState(0);
-
 
   return (
     <div className="App">
@@ -83,15 +81,14 @@ function Checkout() {
         <label>5,000원 할인 쿠폰 적용</label>
       </div>
 
-      <ButtonBox onMouseOver={() => setIsHovering(1)}
-        onMouseOut={() => setIsHovering(0)}>
-        {
-          isHovering ? (<div className="tooltip">{List?.price}원..</div>) : null
-        }
+      <ButtonBox
+        onMouseOver={() => setIsHovering(1)}
+        onMouseOut={() => setIsHovering(0)}
+      >
+        {isHovering ? <div className="tooltip">{List?.price}원..</div> : null}
 
         <Button onClick={requestPayment}>결제하기</Button>
       </ButtonBox>
-
     </div>
   );
 }
@@ -103,10 +100,10 @@ const ButtonBox = styled.div`
   width: 50%;
   height: 3.125rem;
   margin: 0 auto;
-  display: flex;;
+  display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.5s ;
+  transition: all 0.5s;
 
   .tooltip {
     position: absolute;
@@ -119,48 +116,47 @@ const ButtonBox = styled.div`
     justify-content: center;
     background: #eee;
     color: #000;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     border-radius: 1.25rem;
-    transition: all 0.5s ;
-    &::after{
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    color: #eee;
-    border-color: #eee transparent transparent transparent;
-
+    transition: all 0.5s;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -0.3125rem;
+      border-width: 0.3125rem;
+      border-style: solid;
+      color: #eee;
+      border-color: #eee transparent transparent transparent;
     }
-  };
-`
+  }
+`;
 
 const Button = styled.button`
-    width: 9.375rem;
-    height: 3.125rem;
-    border: none;
-    border-radius: 1.5625rem;
-    background: #0064FF;
-    color: #f2f4f6;
-    font-weight: bold;
-    box-shadow: 0 4px 16px rgba(0,79,255,0.3);
-    font-size: 1rem;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    transition: 0.5;
-  
-    &:focus{
-    outline: none;
-   }
+  width: 9.375rem;
+  height: 3.125rem;
+  border: none;
+  border-radius: 1.5625rem;
+  background: #0064ff;
+  color: #f2f4f6;
+  font-weight: bold;
+  box-shadow: 0 0.25rem 1rem rgba(0, 79, 255, 0.3);
+  font-size: 1rem;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5;
 
-   &:hover {
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
     background-color: #1b64da;
-    box-shadow: 0 2px 4px rgba(0,79,255,0.6);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 79, 255, 0.6);
     cursor: pointer;
-}
+  }
 `;

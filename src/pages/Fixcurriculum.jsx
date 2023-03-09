@@ -7,12 +7,12 @@ import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { __fixCurriculum } from "../redux/module/fixCurriculum";
-import { __getCurriculumList } from "../redux/module/getcurriculum";
+import { __getCurriculumList } from "../redux/module/getCurriculum";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
 import { useParams } from "react-router-dom";
-import { __getInfinitiScroll } from "../redux/module/infinitiscroll";
-import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
+import { __getInfinitiScroll } from "../redux/module/infinitiScroll";
+import { __getDetailCurriculumList } from "../redux/module/getDetailCurriculum";
 import codingcherrylogo from "../asset/codingcherrylogo.png";
 
 function Fixcurriculum() {
@@ -80,27 +80,18 @@ function Fixcurriculum() {
       {mymodal ? <Aboutmymodal /> : null}
 
       <SignupBox>
-        <BoxLogoArea><img src={codingcherrylogo} /> <p style={{ fontSize: "1rem" }}>강의 수정 !</p></BoxLogoArea>
-        {/* {preview && (
-          <img
-            style={{
-              width: "200px",
-              height: "200px",
-              borderRadius: "20px",
-              marginBottom: "40px",
-            }}
-            src={preview}
-            alt="Preview"
-          />
-        )} */}
+        <BoxLogoArea>
+          <img src={codingcherrylogo} />{" "}
+          <p style={{ fontSize: "1rem" }}>강의 수정 !</p>
+        </BoxLogoArea>
         <SignupForm onSubmit={handleSubmit(onValid)}>
           <FormImgArea>
             {preview && (
               <div>
                 <img
                   style={{
-                    width: "100%",
-                    height: "100%",
+                    width: "80%",
+                    height: "60%",
                   }}
                   src={preview}
                   alt="Preview"
@@ -177,7 +168,7 @@ const SignupBox = styled.div`
   align-items: center;
   margin: 0 auto;
   background: #f1f3f5;
-  border-radius: .9375rem;
+  border-radius: 0.9375rem;
 `;
 
 const BoxLogoArea = styled.div`
@@ -206,20 +197,20 @@ const FormImgArea = styled.div`
   > div {
     width: 50%;
     height: 100%;
-  
+
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .625rem;
+    padding: 0.625rem;
   }
-`
+`;
 
 const Regiinput = styled.input`
   height: 1.875rem;
-  margin-top: .625rem;
-  padding-left: .75rem;
+  margin-top: 0.625rem;
+  padding-left: 0.75rem;
   border: none;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   font-size: 1.2rem;
   font-weight: bold;
   outline: none;
@@ -228,9 +219,9 @@ const Regiinput = styled.input`
 `;
 
 const RegiTextarea = styled(Regiinput)`
-  width: 25rem;
-  height: 15.625rem;
-  margin-top: .625rem;
+  width: 18.75rem;
+  height: 12.5rem;
+  margin-top: 0.625rem;
   border: none;
   border-radius: 0.25rem;
   font-size: 1.1875rem;
@@ -240,7 +231,6 @@ const RegiTextarea = styled(Regiinput)`
   margin-bottom: 1.25rem;
   resize: none;
   padding: 1.25rem;
-  
 `;
 
 const RegistrationTitle = styled.h2`
@@ -249,19 +239,17 @@ const RegistrationTitle = styled.h2`
 
 const RegiinputFile = styled(Regiinput)`
   border: none;
-  width: 300px;
+  width: 18.75rem;
   ::file-selector-button {
-    width: 150px;
-    height: 30px;
+    width: 9.375rem;
+    height: 1.875rem;
     background: #fff;
     border: 1px solid rgb(77, 77, 77);
-    border-radius: 10px;
+    border-radius: 0.625rem;
     cursor: pointer;
   }
 `;
 
-const SignupBtn = styled(Button)`
-  margin-top: 15px;
-`;
+const SignupBtn = styled(Button)``;
 
 export default Fixcurriculum;

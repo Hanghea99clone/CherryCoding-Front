@@ -5,15 +5,15 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __getDetailCurriculumList } from "../redux/module/getdetailcurriculum";
-import { __postReview } from "../redux/module/addreview";
-import { __deleteReview } from "../redux/module/deletereview";
+import { __getDetailCurriculumList } from "../redux/module/getDetailCurriculum";
+import { __postReview } from "../redux/module/addReview";
+import { __deleteReview } from "../redux/module/deleteReview";
 import { myModal } from "../redux/module/mymodal";
 import Aboutmymodal from "../components/Aboutmymodal";
-import { __editReview } from "../redux/module/editreview";
-import { __postregistercourse } from "../redux/module/postregistercourse";
+import { __editReview } from "../redux/module/editReview";
+import { __postregistercourse } from "../redux/module/postRegisterCourse";
 import { __deleteCurriculum } from "../redux/module/deleteCurriculum";
-import { __getCurriculumList } from "../redux/module/getcurriculum";
+import { __getCurriculumList } from "../redux/module/getCurriculum";
 import { MdRateReview } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
@@ -277,7 +277,7 @@ const DetailUnpateBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0 20px;
+  gap: 0 1.25rem;
   > button {
     width: 7.5rem;
     height: 1.875rem;
@@ -295,14 +295,14 @@ const DetailNavListBox = styled.div`
   margin: 1.25rem auto;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  gap: 30px 0;
+  padding: 0.625rem;
+  gap: 1.875rem 0;
   > h1 {
-    font-size: 27px;
+    font-size: 1.6875rem;
     font-weight: 700;
   }
   > h4 {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 500;
   }
 `;
@@ -315,7 +315,7 @@ const DetailImgTextBox = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  gap: 20px;
+  gap: 1.25rem;
 `;
 
 const DetailImgArea = styled.div`
@@ -334,7 +334,7 @@ const DetailTextArea = styled.div`
   height: 100%;
   ${(props) => props.theme.FelexCenter}
   flex-direction: column;
-  gap: 50px 0;
+  gap: 3.125rem 0;
   > h5 {
     border-bottom: 1px solid gray;
   }
@@ -362,7 +362,7 @@ const DetailMainTextBox = styled.div`
   background: #fafafa;
   display: flex;
   align-items: center;
-  margin-left: 70px;
+  margin-left: 4.375rem;
   > p {
     color: #ff4949;
     padding: 0.75rem 0.625rem;
@@ -373,17 +373,17 @@ const DetailMainTextArea = styled.div`
   width: 62%;
   padding: 1.875rem;
   height: 12.5rem;
-  margin-top: 20px;
-  margin-left: 70px;
+  margin-top: 1.25rem;
+  margin-left: 4.375rem;
 `;
 
 const DetailReviewBox = styled.div`
   width: 80%;
-  margin-top: 20px;
-  margin-left: 70px;
+  margin-top: 1.25rem;
+  margin-left: 4.375rem;
   flex-direction: column;
-  gap: 20px 0;
-  padding: 20px;
+  gap: 1.25rem 0;
+  padding: 1.25rem;
 `;
 
 const DetailReviewArea = styled.div`
@@ -467,7 +467,7 @@ const DetailRevieMake = styled.form`
   display: flex;
   flex-direction: column;
   padding: 1.25rem;
-  gap: 20px 0;
+  gap: 1.25rem 0;
   > input {
     width: 20rem;
     height: 2.5rem;

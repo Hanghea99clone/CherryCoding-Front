@@ -28,7 +28,6 @@ import {
   HomeFooterCircleText,
   HomeFooterCircleButton,
   HomeLineSlider,
-  HomeLineSliderArea,
 } from "../style/Home";
 import mainpagedesign31 from "../asset/mainpagedesign31.png";
 import mainpagebanner from "../asset/mainpagebanner.png";
@@ -41,7 +40,7 @@ import HomeCateogry from "../components/HomeCateogry";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { myModal } from "../redux/module/mymodal";
 import { useEffect } from "react";
-import { __getCurriculumList } from "../redux/module/getcurriculum";
+import { __getCurriculumList } from "../redux/module/getCurriculum";
 import { Link } from "react-router-dom";
 
 function Home() {

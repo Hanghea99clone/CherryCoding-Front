@@ -44,10 +44,10 @@ const BtnStyle = styled.button`
     props.mainMdBtn &&
     css`
       width: 11.6875rem;
-      height: 60px;
-      border-radius: 10px;
+      height: 3.75rem;
+      border-radius: 0.625rem;
       color: white;
-      font-size: 18px;
+      font-size: 1.125rem;
       background-color: #ff5353;
     `}
 
@@ -55,16 +55,16 @@ const BtnStyle = styled.button`
     props.loginMdBtn &&
     css`
       width: 100%;
-      height: 50px;
+      height: 3.125rem;
       background-color: #ff5353;
     `}
 
     ${(props) =>
     props.signupMdBtn &&
     css`
-      width: 110px;
-      height: 40px;
-      border-radius: 5px;
+      width: 6.875rem;
+      height: 2.5rem;
+      border-radius: 0.3125rem;
       border: 1px solid #e84545;
       color: red;
       background-color: white;
@@ -74,7 +74,7 @@ const BtnStyle = styled.button`
     props.loginSignupMdBtn &&
     css`
       width: 100%;
-      height: 50px;
+      height: 3.125rem;
       background-color: #4e4e4e;
     `}
 `;

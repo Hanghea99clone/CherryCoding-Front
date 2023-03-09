@@ -8,7 +8,7 @@ import UserListContainer from "../components/UserListContainer";
 import Aboutmymodal from "../components/Aboutmymodal";
 import { useDispatch, useSelector } from "react-redux";
 import { myModal } from "../redux/module/mymodal";
-import { __usercurriculum } from "../redux/module/usercurriculum";
+import { __usercurriculum } from "../redux/module/userCurriculum";
 
 function Mypage() {
   const [currentTab, clickTab] = useState(0);
@@ -88,7 +88,7 @@ const MypageContainer = styled.div`
 const MypageArea = styled.div`
   width: 100%;
   height: 3.125rem;
-  padding: 30px 100px;
+  padding: 1.875rem 6.25rem;
   display: flex;
   align-items: center;
   color: #666;
@@ -96,7 +96,7 @@ const MypageArea = styled.div`
   > h4 {
     display: flex;
     font-size: 1.5rem;
-    gap: 0 20px;
+    gap: 0 1.25rem;
   }
   > p {
     margin-left: 1.25rem;
@@ -112,19 +112,15 @@ const TabMenu = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 20px auto;
+  margin: 1.25rem auto;
 
   .submenu {
-    // 기본 Tabmenu 에 대한 CSS를 구현
     display: flex;
-    /* justify-content: space-between;
-    width: 380px;
-    heigth: 30px; */
     width: calc(100% / 4);
-    padding: 10px;
-    font-size: 15px;
+    padding: 0.625rem;
+    font-size: 0.9375rem;
     transition: all 0.5s;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 0.625rem 0.625rem 0rem 0rem;
   }
 
   .focused {

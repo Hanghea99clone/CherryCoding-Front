@@ -11,7 +11,6 @@ export const __usercurriculum = createAsyncThunk(
       const response = await acuxios.get(`api/user-curriculum`, {
         headers: { Authorization: GetToken },
       });
-      // console.log(response.data.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);

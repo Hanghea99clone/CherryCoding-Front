@@ -11,7 +11,7 @@ import { useInView } from "react-intersection-observer";
 import {
   __getInfinitiScroll,
   initInfinitiScroll,
-} from "../redux/module/infinitiscroll";
+} from "../redux/module/infinitiScroll";
 
 function Curriculum() {
   const page = useRef(1);
@@ -72,5 +72,5 @@ const CurriculumContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 3.125rem;
 `;

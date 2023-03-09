@@ -53,22 +53,20 @@ function Aboutmymodal() {
 }
 
 const AboutmymodalDivBox = styled.div`
-  //border: 1px solid black;
-  width: 250px;
-  height: 200px;
+  width: 15.625rem;
+  height: 12.5rem;
   background-color: rgb(49, 59, 61);
   color: white;
   position: absolute;
   top: 6.25rem;
   right: 12.5rem;
   z-index: 11;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 `;
 
 const AboutmymodalDivArea = styled.div`
   display: flex;
   flex-direction: column;
-  //border: 1px solid black;
   height: 100%;
   width: 100%;
 `;
@@ -85,7 +83,7 @@ const AboutmymodalSpanArea = styled.div`
 `;
 
 const AboutmymodalFirstSpanArea = styled.div`
-  padding: 20px;
+  padding: 1.25rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -93,7 +91,7 @@ const AboutmymodalFirstSpanArea = styled.div`
 `;
 
 const AboutmymodalFirstSpan = styled.span`
-  font-size: 17px;
+  font-size: 1.0625rem;
 `;
 
 const AboutmymodalLogout = styled.span`

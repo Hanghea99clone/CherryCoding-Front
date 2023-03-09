@@ -61,7 +61,7 @@ const UserListContainer = (MyCurriculum) => {
 export default UserListContainer;
 
 const MypageListBox = styled.div`
-  padding: 10px;
+  padding: 0.625rem;
   width: 90%;
   margin: 0 auto;
   border-top: 1px solid gray;
@@ -69,13 +69,13 @@ const MypageListBox = styled.div`
 
 const MypageListArea = styled.div`
   width: 100%;
-  height: 315px;
+  height: 19.6875rem;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
-  margin: 0px auto;
+  margin: 0rem auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0 20px;
+  gap: 0 1.25rem;
 `;
 
 const MypageListDivImg = styled.div`
@@ -100,7 +100,6 @@ const MypageListDivImg = styled.div`
 const MypageListDivText = styled.div`
   width: 65%;
   height: 85%;
-  /* border: 1px solid red; */
 `;
 
 const MypageListTextTitle = styled.div`
@@ -109,7 +108,7 @@ const MypageListTextTitle = styled.div`
   > a {
     color: #105796;
     padding-left: 1.25rem;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
   }
   > a:hover {
@@ -121,17 +120,17 @@ const MypageListTextTitle = styled.div`
 const MypageListTextStar = styled.div`
   width: 100%;
   height: 10%;
-  padding: 5px;
+  padding: 0.3125rem;
   > a {
     padding: 0.9375rem;
-    font-size: 16px;
+    font-size: 1rem;
     display: flex;
     align-items: center;
   }
 `;
 const MypageListTextReview = styled.span`
   padding-left: 0.3125rem;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #888;
 `;
 
@@ -143,7 +142,7 @@ const MypageListTextBody = styled.div`
   text-align: left;
   > p {
     padding: 0.9375rem;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: rgb(68, 68, 68);
   }
 `;
@@ -151,15 +150,13 @@ const MypageListTextBody = styled.div`
 const MypageListTextBtn = styled.div`
   width: 100%;
   height: 40%;
-  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   justify-content: right;
   > p {
     display: flex;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #ec625b;
-
     margin-top: 5rem;
     cursor: pointer;
   }

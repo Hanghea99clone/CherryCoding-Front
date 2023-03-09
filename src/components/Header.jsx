@@ -65,44 +65,39 @@ function Header() {
 }
 
 const HeaderContainer = styled.div`
-  //border: 1px solid red;
-  height: 100px;
+  height: 6.25rem;
   width: 100%;
   background-color: white;
   position: relative;
 `;
 
 const HeaderBox = styled.div`
-  //border: 1px solid black;
   height: 100%;
   ${(props) => props.theme.FlexSpace};
 `;
 
 const HeaderAreaSpan = styled.div`
-  //border: 1px solid black;
   display: flex;
   justify-content: space-between;
-  width: 180px;
+  width: 11.25rem;
 `;
 
 const HeaderImg = styled.img`
-  width: 200px;
+  width: 12.5rem;
 `;
 
 const HeaderBoxDiv = styled.div`
-  //border: 1px solid black;
   display: flex;
   justify-content: space-between;
-  width: 115px;
+  width: 7.1875rem;
 `;
 
 const HeaderDiv = styled.div`
-  //border: 1px solid black;
   display: flex;
 `;
 
 const HeaderFaUserAlt = styled(FaUserAlt)`
-  margin-right: 10px;
+  margin-right: 0.625rem;
 `;
 
 const HeaderLoginBtn = styled.span`
