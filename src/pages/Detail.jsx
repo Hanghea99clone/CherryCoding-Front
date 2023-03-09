@@ -101,7 +101,7 @@ function Detail() {
     navigate("/");
   }
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const isAdmin = userInfo.isAdmin;
+  const isAdmin = userInfo?.isAdmin;
 
   return (
     <div>
